@@ -1,12 +1,12 @@
 import OrderForm from "./components/OrderForm";
-import "./App.css";
+import "./styles/app.scss";
 
-function App() {
+const App: React.FC = () => {
     return (
         <div className="App">
             <OrderForm />
         </div>
     );
-}
+};
 
 export default App;
