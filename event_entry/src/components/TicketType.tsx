@@ -1,32 +1,36 @@
-const TicketType: React.FC = () => {
+interface Props {
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const TicketType: React.FC<Props> = ({ handleChange }) => {
     return (
         <section className="ticket_type">
             <label>
                 <input
                     type="radio"
                     value="option1"
-                    checked={selectedOption === "option1"}
-                    onChange={handleOptionChange}
+                    //checked={selectedOption === "option1"}
+                    onChange={(e) => handleChange(e)}
                 />
-                Option 1
+                Event Entry
             </label>
             <label>
                 <input
                     type="radio"
                     value="option1"
-                    checked={selectedOption === "option1"}
-                    onChange={handleOptionChange}
+                    //checked={selectedOption === "option1"}
+                    onChange={(e) => handleChange(e)}
                 />
-                Option 1
+                Lumirank Rental
             </label>
             <label>
                 <input
                     type="radio"
                     value="option1"
-                    checked={selectedOption === "option1"}
-                    onChange={handleOptionChange}
+                    //checked={selectedOption === "option1"}
+                    onChange={(e) => handleChange(e)}
                 />
-                Option 1
+                Bronze Test Session
             </label>
         </section>
     );
