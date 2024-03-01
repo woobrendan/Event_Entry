@@ -2,9 +2,6 @@ import { useState } from "react";
 import TicketType from "./TicketType";
 import NewOrder from "./NewOrder";
 
-//use array of components to track what is next
-//crete old state to go back one
-
 const OrderForm: React.FC = () => {
     // order 1: type event
     //order2 : type event
@@ -13,6 +10,8 @@ const OrderForm: React.FC = () => {
         order1: { type: "" },
     });
 
+    const [currentComp, setCurrentComp] = useState(0);
+
     const selectTicketType = (e: React.ChangeEvent<HTMLInputElement>) => {
         setOrder((prev) => ({
             ...prev,
@@ -20,13 +19,20 @@ const OrderForm: React.FC = () => {
         }));
     };
 
-    return (
-        <section className="order_form_container">
-            {/* select Order type (event, lumirank, bronze) */}
-            <NewOrder />
-            {/*<TicketType handleChange={selectTicketType} />*/}
-        </section>
-    );
+    const nextComponent = () => {
+        setCurrentComp(currentComp + 1);
+    };
+
+    const components = [
+        <NewOrder next={nextComponent} />,
+        <TicketType handleChange={selectTicketType} />,
+        //next comp
+        //next comp
+    ];
+
+    const CurrentComponent = components[currentComp];
+
+    return <section className="order_form_container">{CurrentComponent}</section>;
 };
 
 export default OrderForm;
