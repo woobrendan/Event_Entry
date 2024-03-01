@@ -1,5 +1,10 @@
 import { useState } from "react";
 import TicketType from "./TicketType";
+import NewOrder from "./NewOrder";
+
+//use array of components to track what is next
+//crete old state to go back one
+
 const OrderForm: React.FC = () => {
     // order 1: type event
     //order2 : type event
@@ -18,7 +23,8 @@ const OrderForm: React.FC = () => {
     return (
         <section className="order_form_container">
             {/* select Order type (event, lumirank, bronze) */}
-            <TicketType handleChange={selectTicketType} />
+            <NewOrder />
+            {/*<TicketType handleChange={selectTicketType} />*/}
         </section>
     );
 };
