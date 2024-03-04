@@ -1,6 +1,9 @@
 import { useState } from "react";
+
 import TicketType from "./TicketType";
 import NewOrder from "./NewOrder";
+
+import "../styles/orderForm.scss";
 
 const OrderForm: React.FC = () => {
     // order 1: type event
@@ -19,13 +22,13 @@ const OrderForm: React.FC = () => {
         }));
     };
 
-    const nextComponent = () => {
-        setCurrentComp(currentComp + 1);
+    const componentNavigation = (val: string): void => {
+        val === "next" ? setCurrentComp(currentComp + 1) : setCurrentComp(currentComp - 1);
     };
 
     const components = [
-        <NewOrder next={nextComponent} />,
-        <TicketType handleChange={selectTicketType} />,
+        <NewOrder compNav={componentNavigation} />,
+        <TicketType handleChange={selectTicketType} compNav={componentNavigation} />,
         //next comp
         //next comp
     ];
