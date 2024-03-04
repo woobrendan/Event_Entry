@@ -1,7 +1,9 @@
 import { useState } from "react";
 
+//** Components */
 import TicketType from "./TicketType";
 import NewOrder from "./NewOrder";
+import SeriesSelect from "./event_entry/SeriesSelect";
 
 import "../styles/orderForm.scss";
 
@@ -29,7 +31,7 @@ const OrderForm: React.FC = () => {
     const components = [
         <NewOrder compNav={componentNavigation} />,
         <TicketType handleChange={selectTicketType} compNav={componentNavigation} />,
-        //next comp
+        <SeriesSelect compNav={componentNavigation} />,
         //next comp
     ];
 
