@@ -10,7 +10,12 @@
         min-width: 75px;
     }
 
-    .ticket_type {
+    .comp_nav_buttons {
+        display: flex;
+        gap: 50px;
+    }
+
+    .ticket_type, .series_select {
         display: flex;
         flex-direction: column;
         height: 80%;
@@ -24,6 +29,10 @@
             font-size: large;
             font-weight: bold;
             height: 70%;
+
+            input[type="radio"] {
+                margin-right: 5%; 
+              }
         }
     }
 
