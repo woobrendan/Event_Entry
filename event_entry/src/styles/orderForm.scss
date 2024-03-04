@@ -1,0 +1,22 @@
+.order_form_container {
+    height: 80vh;
+    width: 60vw;
+
+    .ticket_type {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+
+        &__radios {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5%;
+            font-size: large;
+            font-weight: bold;
+            height: 70%;
+        }
+    }
+
+}
