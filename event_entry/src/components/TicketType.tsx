@@ -1,38 +1,41 @@
 import { Button } from "@mui/material";
 
 interface Props {
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    setKeyVal: (e: React.ChangeEvent<HTMLInputElement>) => void;
     compNav: (val: string) => void;
 }
 
-const TicketType: React.FC<Props> = ({ handleChange, compNav }) => {
+const TicketType: React.FC<Props> = ({ setKeyVal, compNav }) => {
     return (
         <section className="ticket_type">
             <div className="ticket_type__radios">
                 <label>
                     <input
                         type="radio"
-                        value="option1"
+                        value="event"
+                        name="type"
                         //checked={selectedOption === "option1"}
-                        onChange={(e) => handleChange(e)}
+                        onChange={(e) => setKeyVal(e)}
                     />
                     Event Entry
                 </label>
                 <label>
                     <input
                         type="radio"
-                        value="option1"
+                        value="lumirank"
+                        name="type"
                         //checked={selectedOption === "option1"}
-                        onChange={(e) => handleChange(e)}
+                        onChange={(e) => setKeyVal(e)}
                     />
                     Lumirank Rental
                 </label>
                 <label>
                     <input
                         type="radio"
-                        value="option1"
+                        value="bronze"
+                        name="type"
                         //checked={selectedOption === "option1"}
-                        onChange={(e) => handleChange(e)}
+                        onChange={(e) => setKeyVal(e)}
                     />
                     Bronze Test Session
                 </label>
