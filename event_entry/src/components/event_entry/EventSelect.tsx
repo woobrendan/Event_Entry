@@ -18,13 +18,14 @@ const EventSelect: React.FC<Props> = ({ compNav, setKeyVal }) => {
         "Indianpolis Motor Speedway",
     ];
 
-    const mappedInputs = events.map((event) => {
+    const mappedInputs = events.map((event, index) => {
         return (
             <label>
                 <input
                     type="radio"
                     value={event}
                     name="event"
+                    key={index}
                     //checked={selectedOption === "option1"}
                     onChange={(e) => setKeyVal(e)}
                 />
@@ -33,8 +34,8 @@ const EventSelect: React.FC<Props> = ({ compNav, setKeyVal }) => {
         );
     });
     return (
-        <section className="event_select">
-            <div className="event_select__radios">{mappedInputs}</div>
+        <section className="event select">
+            <div className="select__radios">{mappedInputs}</div>
             <div className="comp_nav_buttons">
                 <Button variant="outlined" color="error" onClick={() => compNav("back")}>
                     Back
