@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import BackNextButtons from "../BackNextButtons";
 
 interface Props {
     compNav: (val: string) => void;
@@ -36,14 +36,7 @@ const EventSelect: React.FC<Props> = ({ compNav, setKeyVal }) => {
     return (
         <section className="event select">
             <div className="select__radios">{mappedInputs}</div>
-            <div className="comp_nav_buttons">
-                <Button variant="outlined" color="error" onClick={() => compNav("back")}>
-                    Back
-                </Button>
-                <Button variant="contained" color="error" onClick={() => compNav("next")}>
-                    Next
-                </Button>
-            </div>
+            <BackNextButtons compNav={compNav} />
         </section>
     );
 };
