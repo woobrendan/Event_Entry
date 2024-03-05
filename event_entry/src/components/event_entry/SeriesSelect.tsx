@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import BackNextButtons from "../BackNextButtons";
 
 interface Props {
     compNav: (val: string) => void;
@@ -7,8 +7,8 @@ interface Props {
 
 const SeriesSelect: React.FC<Props> = ({ compNav, setKeyVal }) => {
     return (
-        <section className="series_select">
-            <div className="series_select__radios">
+        <section className="series select">
+            <div className="select__radios">
                 <label>
                     <input
                         type="radio"
@@ -60,14 +60,7 @@ const SeriesSelect: React.FC<Props> = ({ compNav, setKeyVal }) => {
                     Toyota GR Cup
                 </label>
             </div>
-            <div className="comp_nav_buttons">
-                <Button variant="outlined" color="error" onClick={() => compNav("back")}>
-                    Back
-                </Button>
-                <Button variant="contained" color="error" onClick={() => compNav("next")}>
-                    Next
-                </Button>
-            </div>
+            <BackNextButtons compNav={compNav} />
         </section>
     );
 };
