@@ -1,3 +1,4 @@
+import { useState } from "react";
 import BackNextButtons from "../BackNextButtons";
 
 interface Props {
@@ -6,6 +7,8 @@ interface Props {
 }
 
 const EventSelect: React.FC<Props> = ({ compNav, setKeyVal }) => {
+    const [selected, setSelected] = useState("");
+
     const events = [
         "Full Season Entry",
         "Sonoma Raceway",
@@ -18,6 +21,11 @@ const EventSelect: React.FC<Props> = ({ compNav, setKeyVal }) => {
         "Indianpolis Motor Speedway",
     ];
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSelected(e.target.value);
+        setKeyVal(e);
+    };
+
     const mappedInputs = events.map((event, index) => {
         return (
             <label key={index}>
@@ -25,8 +33,8 @@ const EventSelect: React.FC<Props> = ({ compNav, setKeyVal }) => {
                     type="radio"
                     value={event}
                     name="event"
-                    //checked={selectedOption === "option1"}
-                    onChange={(e) => setKeyVal(e)}
+                    checked={selected === event}
+                    onChange={(e) => handleChange(e)}
                 />
                 {event}
             </label>
