@@ -30,8 +30,8 @@ const OrderForm: React.FC = () => {
     const components = [
         <NewOrder compNav={componentNavigation} />,
         <TicketType setKeyVal={setKeyVal} compNav={componentNavigation} />,
-        <SeriesSelect setKeyVal={setKeyVal} compNav={componentNavigation} />,
         <EventSelect setKeyVal={setKeyVal} compNav={componentNavigation} />,
+        <SeriesSelect setKeyVal={setKeyVal} compNav={componentNavigation} />,
         //next comp
     ];
 
