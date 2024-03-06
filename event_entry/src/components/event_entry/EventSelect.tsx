@@ -20,12 +20,11 @@ const EventSelect: React.FC<Props> = ({ compNav, setKeyVal }) => {
 
     const mappedInputs = events.map((event, index) => {
         return (
-            <label>
+            <label key={index}>
                 <input
                     type="radio"
                     value={event}
                     name="event"
-                    key={index}
                     //checked={selectedOption === "option1"}
                     onChange={(e) => setKeyVal(e)}
                 />
