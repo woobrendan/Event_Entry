@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { useState } from "react";
 
 interface Props {
     setKeyVal: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -6,11 +7,18 @@ interface Props {
 }
 
 const TicketType: React.FC<Props> = ({ setKeyVal, compNav }) => {
+    const [selected, setSelected] = useState("");
+
     const ticketTypes = [
         { value: "event", label: "Event Entry" },
         { value: "lumirank", label: "Lumirank Rental" },
         { value: "bronzeTest", label: "Bronze Test Session" },
     ];
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSelected(e.target.value);
+        setKeyVal(e);
+    };
 
     const mappedTickets = ticketTypes.map((ticket, index) => {
         return (
@@ -19,8 +27,8 @@ const TicketType: React.FC<Props> = ({ setKeyVal, compNav }) => {
                     type="radio"
                     value={ticket.value}
                     name="type"
-                    //checked={selectedOption === "option1"}
-                    onChange={(e) => setKeyVal(e)}
+                    checked={selected === ticket.value}
+                    onChange={(e) => handleChange(e)}
                 />
                 {ticket.label}
             </label>
