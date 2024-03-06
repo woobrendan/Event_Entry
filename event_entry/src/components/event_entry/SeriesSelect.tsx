@@ -29,7 +29,7 @@ const SeriesSelect: React.FC<Props> = ({ compNav, setKeyVal }) => {
                     type="radio"
                     value={val}
                     name="series"
-                    checked={selected === "val"}
+                    checked={selected === val}
                     onChange={(e) => handleChange(e)}
                 />
                 {val}
