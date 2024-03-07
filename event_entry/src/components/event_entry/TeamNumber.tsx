@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { SetAndNav } from "../../models/props";
 
-const TeamNumber: React.FC = () => {
+const TeamNumber: React.FC<SetAndNav> = ({ compNav, setKeyVal }) => {
     const [details, setDetails] = useState({
         number: "",
         team: "",
