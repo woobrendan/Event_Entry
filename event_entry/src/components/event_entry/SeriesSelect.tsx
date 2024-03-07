@@ -1,12 +1,8 @@
 import { useState } from "react";
 import BackNextButtons from "../BackNextButtons";
+import { SetAndNav } from "../../models/props";
 
-interface Props {
-    compNav: (val: string) => void;
-    setKeyVal: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-const SeriesSelect: React.FC<Props> = ({ compNav, setKeyVal }) => {
+const SeriesSelect: React.FC<SetAndNav> = ({ compNav, setKeyVal }) => {
     const [selected, setSelected] = useState("");
 
     const series = [
