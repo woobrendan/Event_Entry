@@ -13,6 +13,7 @@ const TeamNumber: React.FC<SetAndNav> = ({ compNav, setKeyVal }) => {
             ...prev,
             [e.target.name]: e.target.value,
         }));
+        setKeyVal(e);
     };
 
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -24,14 +25,25 @@ const TeamNumber: React.FC<SetAndNav> = ({ compNav, setKeyVal }) => {
 
     return (
         <section className="team_info input">
-            <label>Car Number:</label>
-            <input type="number" value={details.number} name="number" onInput={handleInput} />
-            <select name="team" value={details.team} onInput={handleSelect}>
-                <option value="" disabled>
-                    Select Team
-                </option>
-                {/*{teams.map((team,index))}*/}
-            </select>
+            <div className="input__team">
+                <label>Car Number:</label>
+                <input type="number" value={details.number} name="number" onInput={handleInput} />
+            </div>
+            <div className="input__team">
+                <label>Team:</label>
+                <select name="team" value={details.team} onInput={handleSelect}>
+                    <option value="" disabled>
+                        Select Team
+                    </option>
+                    {teams.map((team, index) => {
+                        return (
+                            <option value={team} key={index}>
+                                {team}
+                            </option>
+                        );
+                    })}
+                </select>
+            </div>
         </section>
     );
 };
