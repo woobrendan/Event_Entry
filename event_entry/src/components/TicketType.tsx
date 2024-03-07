@@ -1,12 +1,8 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
+import { SetAndNav } from "../models/props";
 
-interface Props {
-    setKeyVal: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    compNav: (val: string) => void;
-}
-
-const TicketType: React.FC<Props> = ({ setKeyVal, compNav }) => {
+const TicketType: React.FC<SetAndNav> = ({ setKeyVal, compNav }) => {
     const [selected, setSelected] = useState("");
 
     const ticketTypes = [
