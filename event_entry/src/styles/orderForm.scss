@@ -16,6 +16,36 @@
         margin-top: 5%;
     }
 
+    //** Ticket Type components */
+    .ticket_type_container {
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+
+        .click_box {
+            display: flex;
+            flex-direction: column;
+            gap: 5%;
+            height: 80%;
+            width: 80%;
+            justify-content: center;
+            align-items: center;
+            
+            &__div {
+                width: 200px;
+                height: 100px;
+                background-color: #db2525;
+                color: #fff;
+                text-align: center;
+                line-height: 100px;
+                cursor: pointer;
+            }
+        }
+
+    }
+
     .select {
         display: flex;
         flex-direction: column;
