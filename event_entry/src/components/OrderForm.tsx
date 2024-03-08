@@ -21,7 +21,7 @@ const OrderForm: React.FC = () => {
         val === "next" ? setCurrentComp(currentComp + 1) : setCurrentComp(currentComp - 1);
     };
 
-    const handleInputElement = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFormElement = <T extends HTMLInputElement | HTMLSelectElement>(e: React.ChangeEvent<T>) => {
         setOrder((prev) => ({
             ...prev,
             [e.target.name]: e.target.value,
@@ -30,10 +30,10 @@ const OrderForm: React.FC = () => {
 
     const components = [
         <NewOrder compNav={componentNavigation} />,
-        <TicketType handleInputElement={handleInputElement} compNav={componentNavigation} />,
-        <EventSelect handleInputElement={handleInputElement} compNav={componentNavigation} />,
-        <SeriesSelect handleInputElement={handleInputElement} compNav={componentNavigation} />,
-        <TeamNumber handleInputElement={handleInputElement} compNav={componentNavigation} />,
+        <TicketType handleFormElement={handleFormElement} compNav={componentNavigation} />,
+        <EventSelect handleFormElement={handleFormElement} compNav={componentNavigation} />,
+        <SeriesSelect handleFormElement={handleFormElement} compNav={componentNavigation} />,
+        <TeamNumber handleFormElement={handleFormElement} compNav={componentNavigation} />,
     ];
 
     const CurrentComponent = components[currentComp];

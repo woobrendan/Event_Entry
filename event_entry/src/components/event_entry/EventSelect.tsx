@@ -3,10 +3,10 @@ import BackNextButtons from "../BackNextButtons";
 
 interface Props {
     compNav: (val: string) => void;
-    handleInputElement: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleFormElement: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const EventSelect: React.FC<Props> = ({ compNav, handleInputElement }) => {
+const EventSelect: React.FC<Props> = ({ compNav, handleFormElement }) => {
     const [selected, setSelected] = useState("");
 
     const events = [
@@ -23,7 +23,7 @@ const EventSelect: React.FC<Props> = ({ compNav, handleInputElement }) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSelected(e.target.value);
-        handleInputElement(e);
+        handleFormElement(e);
     };
 
     const mappedInputs = events.map((event, index) => {

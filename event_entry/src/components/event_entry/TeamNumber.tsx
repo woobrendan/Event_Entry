@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SetAndNav } from "../../models/props";
 import { teams } from "../../seeds/teams";
 
-const TeamNumber: React.FC<SetAndNav> = ({ compNav, handleInputElement }) => {
+const TeamNumber: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
     const [details, setDetails] = useState({
         number: "",
         team: "",
@@ -13,7 +13,7 @@ const TeamNumber: React.FC<SetAndNav> = ({ compNav, handleInputElement }) => {
             ...prev,
             [e.target.name]: e.target.value,
         }));
-        handleInputElement(e);
+        handleFormElement(e);
     };
 
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -21,6 +21,7 @@ const TeamNumber: React.FC<SetAndNav> = ({ compNav, handleInputElement }) => {
             ...prev,
             [e.target.name]: e.target.value,
         }));
+        handleFormElement(e);
     };
 
     return (

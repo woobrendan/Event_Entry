@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import { SetAndNav } from "../models/props";
 
-const TicketType: React.FC<SetAndNav> = ({ handleInputElement, compNav }) => {
+const TicketType: React.FC<SetAndNav> = ({ handleFormElement, compNav }) => {
     const [selected, setSelected] = useState("");
 
     const ticketTypes = [
@@ -13,7 +13,7 @@ const TicketType: React.FC<SetAndNav> = ({ handleInputElement, compNav }) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSelected(e.target.value);
-        handleInputElement(e);
+        handleFormElement(e);
     };
 
     const mappedTickets = ticketTypes.map((ticket, index) => {

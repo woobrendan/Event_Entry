@@ -2,7 +2,7 @@ import { useState } from "react";
 import BackNextButtons from "../BackNextButtons";
 import { SetAndNav } from "../../models/props";
 
-const SeriesSelect: React.FC<SetAndNav> = ({ compNav, handleInputElement }) => {
+const SeriesSelect: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
     const [selected, setSelected] = useState("");
 
     const series = [
@@ -15,7 +15,7 @@ const SeriesSelect: React.FC<SetAndNav> = ({ compNav, handleInputElement }) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSelected(e.target.value);
-        handleInputElement(e);
+        handleFormElement(e);
     };
 
     const mappedSeries = series.map((val, index) => {
