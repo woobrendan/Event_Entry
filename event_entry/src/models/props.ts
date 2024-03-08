@@ -1,4 +1,4 @@
 export interface SetAndNav {
     compNav: (val: string) => void;
-    handleInputElement: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleFormElement: <T extends HTMLInputElement | HTMLSelectElement>(e: React.ChangeEvent<T>) => void;
 }
