@@ -28,9 +28,16 @@ const OrderForm: React.FC = () => {
         }));
     };
 
+    const handleBoxClick = (name: string, val: string) => {
+        setOrder((prev) => ({
+            ...prev,
+            [name]: val,
+        }));
+    };
+
     const components = [
         <NewOrder compNav={componentNavigation} />,
-        <TicketType handleFormElement={handleFormElement} compNav={componentNavigation} />,
+        <TicketType handleBoxClick={handleBoxClick} compNav={componentNavigation} />,
         <EventSelect handleFormElement={handleFormElement} compNav={componentNavigation} />,
         <SeriesSelect handleFormElement={handleFormElement} compNav={componentNavigation} />,
         <TeamNumber handleFormElement={handleFormElement} compNav={componentNavigation} />,
