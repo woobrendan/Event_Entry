@@ -18,34 +18,35 @@
     }
 
     //** Ticket Type components */
-    .ticket_type_container {
+    .ticket_type_container, .series_container {
         height: 100%;
         width: 100%;
         align-items: center;
         justify-content: center;
         display: flex;
-
+        flex-direction: column;
+        
         .click_box {
             display: flex;
             flex-direction: column;
             gap: 8%;
-            height: 80%;
-            width: 80%;
+            height: 100%;
+            width: 100%;
             justify-content: center;
             align-items: center;
             
             &__div {
-                width: 60vw;
+                width: 70%;
                 background-color: #db2525;
                 color: #fff;
                 text-align: center;
-                line-height: 100px;
+                line-height: 250%;
                 cursor: pointer;
                 font-weight: bold;
                 font-size: 2vw;
+                border-radius: 6px;
             }
         }
-
     }
 
     //** For Event, Series component*/
