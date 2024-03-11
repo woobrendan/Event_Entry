@@ -1,13 +1,13 @@
 import { useState } from "react";
 import BackNextButtons from "../BackNextButtons";
+import { SetAndNav } from "../../models/props";
 
-interface Props {
-    compNav: (val: string) => void;
-    handleFormElement: (e: React.ChangeEvent<HTMLInputElement>) => void;
+interface Props extends SetAndNav {
+    event: string;
 }
 
-const EventSelect: React.FC<Props> = ({ compNav, handleFormElement }) => {
-    const [selected, setSelected] = useState("");
+const EventSelect: React.FC<Props> = ({ compNav, handleFormElement, event }) => {
+    const [selected, setSelected] = useState(event ? event : "");
 
     const events = [
         "Full Season Entry",
