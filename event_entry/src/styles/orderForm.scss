@@ -28,20 +28,21 @@
         .click_box {
             display: flex;
             flex-direction: column;
-            gap: 5%;
+            gap: 8%;
             height: 80%;
             width: 80%;
             justify-content: center;
             align-items: center;
             
             &__div {
-                width: 200px;
-                height: 100px;
+                width: 60vw;
                 background-color: #db2525;
                 color: #fff;
                 text-align: center;
                 line-height: 100px;
                 cursor: pointer;
+                font-weight: bold;
+                font-size: 2vw;
             }
         }
 
