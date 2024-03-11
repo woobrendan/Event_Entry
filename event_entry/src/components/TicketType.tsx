@@ -21,8 +21,10 @@ const TicketType: React.FC<Props> = ({ handleBoxClick, compNav }) => {
     //    handleFormElement(e);
     //};
 
-    const handleClick = (val) => {
+    const handleClick = (val: string) => {
         setSelected(val);
+        handleBoxClick("type", val);
+        compNav("next");
     };
 
     //const mappedTickets = ticketTypes.map((ticket, index) => {
@@ -43,7 +45,7 @@ const TicketType: React.FC<Props> = ({ handleBoxClick, compNav }) => {
     const boxTickets = ticketTypes.map((ticket, index) => {
         return (
             <div
-                className={`ticket click_box ${selected === ticket.value ? "selected" : ""}`}
+                className={`ticket click_box__div ${selected === ticket.value ? "selected" : ""}`}
                 onClick={() => handleClick(ticket.value)}
                 key={index}
             >
@@ -53,11 +55,11 @@ const TicketType: React.FC<Props> = ({ handleBoxClick, compNav }) => {
     });
 
     return (
-        <section className="ticket select">
-            <div className="select__radios">{boxTickets}</div>
-            <Button variant="contained" color="error" onClick={() => compNav("next")}>
+        <section className="ticket_type_container">
+            <div className="click_box">{boxTickets}</div>
+            {/*<Button variant="contained" color="error" onClick={() => compNav("next")}>
                 Next
-            </Button>
+            </Button>*/}
         </section>
     );
 };
