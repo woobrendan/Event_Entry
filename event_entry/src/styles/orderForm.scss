@@ -25,7 +25,7 @@
         justify-content: center;
         display: flex;
         flex-direction: column;
-        
+
         .click_box {
             display: flex;
             flex-direction: column;
@@ -45,6 +45,12 @@
                 font-weight: bold;
                 font-size: 2vw;
                 border-radius: 6px;
+
+                &.selected {
+                    background-color: #000000;
+                    color: #db2525;
+                    border: 1px solid red;
+                }
             }
         }
     }
