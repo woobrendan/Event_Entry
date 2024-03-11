@@ -1,6 +1,4 @@
-import { Button } from "@mui/material";
 import { useState } from "react";
-import { SetAndNav } from "../models/props";
 
 interface Props {
     handleBoxClick: (name: string, val: string) => void;
@@ -16,31 +14,11 @@ const TicketType: React.FC<Props> = ({ handleBoxClick, compNav }) => {
         { value: "bronzeTest", label: "Bronze Test Session" },
     ];
 
-    //const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //    setSelected(e.target.value);
-    //    handleFormElement(e);
-    //};
-
     const handleClick = (val: string) => {
         setSelected(val);
         handleBoxClick("type", val);
         compNav("next");
     };
-
-    //const mappedTickets = ticketTypes.map((ticket, index) => {
-    //    return (
-    //        <label key={index}>
-    //            <input
-    //                type="radio"
-    //                value={ticket.value}
-    //                name="type"
-    //                checked={selected === ticket.value}
-    //                onChange={(e) => handleChange(e)}
-    //            />
-    //            {ticket.label}
-    //        </label>
-    //    );
-    //});
 
     const boxTickets = ticketTypes.map((ticket, index) => {
         return (
@@ -57,9 +35,6 @@ const TicketType: React.FC<Props> = ({ handleBoxClick, compNav }) => {
     return (
         <section className="ticket_type_container">
             <div className="click_box">{boxTickets}</div>
-            {/*<Button variant="contained" color="error" onClick={() => compNav("next")}>
-                Next
-            </Button>*/}
         </section>
     );
 };
