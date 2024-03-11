@@ -12,6 +12,7 @@ import "../styles/orderForm.scss";
 const OrderForm: React.FC = () => {
     // each order will indicate type, at end add to redux cart
     const [order, setOrder] = useState({
+        event: "",
         //order1: { type: "" },
     });
 
@@ -38,7 +39,7 @@ const OrderForm: React.FC = () => {
     const components = [
         <NewOrder compNav={componentNavigation} />,
         <TicketType handleBoxClick={handleBoxClick} compNav={componentNavigation} />,
-        <EventSelect handleFormElement={handleFormElement} compNav={componentNavigation} />,
+        <EventSelect handleFormElement={handleFormElement} compNav={componentNavigation} event={order.event} />,
         <SeriesSelect handleFormElement={handleFormElement} compNav={componentNavigation} />,
         <TeamNumber handleFormElement={handleFormElement} compNav={componentNavigation} />,
     ];
