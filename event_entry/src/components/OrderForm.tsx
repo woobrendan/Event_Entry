@@ -13,7 +13,7 @@ const OrderForm: React.FC = () => {
     // each order will indicate type, at end add to redux cart
     const [order, setOrder] = useState({
         event: "",
-        //order1: { type: "" },
+        series: "",
     });
 
     const [currentComp, setCurrentComp] = useState(0);
@@ -40,7 +40,7 @@ const OrderForm: React.FC = () => {
         <NewOrder compNav={compNav} />,
         <TicketType handleBoxClick={handleBoxClick} compNav={compNav} />,
         <EventSelect handleFormElement={handleFormElement} compNav={compNav} event={order.event} />,
-        <SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} />,
+        <SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} />,
         <TeamNumber handleFormElement={handleFormElement} compNav={compNav} />,
     ];
 
