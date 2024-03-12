@@ -1,8 +1,8 @@
 import { useState } from "react";
 import BackNextButtons from "../BackNextButtons";
-import { SetAndNav } from "../../models/props";
+import { ClickAndNav } from "../../models/props";
 
-const SeriesSelect: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
+const SeriesSelect: React.FC<ClickAndNav> = ({ compNav, handleBoxClick }) => {
     const [selected, setSelected] = useState("");
 
     const series = [
@@ -13,29 +13,10 @@ const SeriesSelect: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
         "Toyota GR Cup",
     ];
 
-    //const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //    setSelected(e.target.value);
-    //    handleFormElement(e);
-    //};
-
     const handleClick = (val: string) => {
         setSelected(val);
+        handleBoxClick("series", val);
     };
-
-    //const mappedSeries = series.map((val, index) => {
-    //    return (
-    //        <label key={index}>
-    //            <input
-    //                type="radio"
-    //                value={val}
-    //                name="series"
-    //                checked={selected === val}
-    //                onChange={(e) => handleChange(e)}
-    //            />
-    //            {val}
-    //        </label>
-    //    );
-    //});
 
     const boxSeries = series.map((val, index) => {
         return (
@@ -49,8 +30,8 @@ const SeriesSelect: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
         );
     });
     return (
-        <section className="series select">
-            <div className="select__radios">{boxSeries}</div>
+        <section className="series_container">
+            <div className="click_box">{boxSeries}</div>
             <BackNextButtons compNav={compNav} />
         </section>
     );
