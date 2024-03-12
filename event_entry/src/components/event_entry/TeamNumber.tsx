@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { SetAndNav } from "../../models/props";
 import { teams } from "../../seeds/teams";
+import BackNextButtons from "../BackNextButtons";
 
 const TeamNumber: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
     const [details, setDetails] = useState({
@@ -45,6 +46,7 @@ const TeamNumber: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
                     })}
                 </select>
             </div>
+            <BackNextButtons compNav={compNav} />
         </section>
     );
 };
