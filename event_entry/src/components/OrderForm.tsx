@@ -18,7 +18,7 @@ const OrderForm: React.FC = () => {
 
     const [currentComp, setCurrentComp] = useState(0);
 
-    const componentNavigation = (val: string): void => {
+    const compNav = (val: string): void => {
         val === "next" ? setCurrentComp(currentComp + 1) : setCurrentComp(currentComp - 1);
     };
 
@@ -37,11 +37,11 @@ const OrderForm: React.FC = () => {
     };
 
     const components = [
-        <NewOrder compNav={componentNavigation} />,
-        <TicketType handleBoxClick={handleBoxClick} compNav={componentNavigation} />,
-        <EventSelect handleFormElement={handleFormElement} compNav={componentNavigation} event={order.event} />,
-        <SeriesSelect handleFormElement={handleFormElement} compNav={componentNavigation} />,
-        <TeamNumber handleFormElement={handleFormElement} compNav={componentNavigation} />,
+        <NewOrder compNav={compNav} />,
+        <TicketType handleBoxClick={handleBoxClick} compNav={compNav} />,
+        <EventSelect handleFormElement={handleFormElement} compNav={compNav} event={order.event} />,
+        <SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} />,
+        <TeamNumber handleFormElement={handleFormElement} compNav={compNav} />,
     ];
 
     const CurrentComponent = components[currentComp];
