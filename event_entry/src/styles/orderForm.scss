@@ -58,7 +58,8 @@
                 }
             }
 
-            &__div, .event {
+            &__event .click_box__div,
+            &__div.event {
                 line-height: 150%;
             }
         }
