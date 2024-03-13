@@ -39,8 +39,9 @@ const OrderForm: React.FC = () => {
     const components = [
         <NewOrder compNav={compNav} />,
         <TicketType handleBoxClick={handleBoxClick} compNav={compNav} />,
-        <EventSelect handleFormElement={handleFormElement} compNav={compNav} event={order.event} />,
+        <EventSelect handleBoxClick={handleBoxClick} compNav={compNav} event={order.event} />,
         <SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} />,
+        // select class
         <TeamNumber handleFormElement={handleFormElement} compNav={compNav} />,
     ];
 
