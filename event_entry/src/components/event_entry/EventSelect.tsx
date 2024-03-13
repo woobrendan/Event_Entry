@@ -1,12 +1,12 @@
 import { useState } from "react";
 import BackNextButtons from "../BackNextButtons";
-import { SetAndNav } from "../../models/props";
+import { ClickAndNav } from "../../models/props";
 
-interface Props extends SetAndNav {
+interface Props extends ClickAndNav {
     event: string;
 }
 
-const EventSelect: React.FC<Props> = ({ compNav, handleFormElement, event }) => {
+const EventSelect: React.FC<Props> = ({ compNav, handleBoxClick, event }) => {
     const [selected, setSelected] = useState(event ? event : "");
 
     const events = [
@@ -21,28 +21,27 @@ const EventSelect: React.FC<Props> = ({ compNav, handleFormElement, event }) => 
         "Indianpolis Motor Speedway",
     ];
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSelected(e.target.value);
-        handleFormElement(e);
+    const handleClick = (val: string) => {
+        setSelected(val);
+        handleBoxClick("event", val);
+        compNav("next");
     };
 
-    const mappedInputs = events.map((event, index) => {
+    const boxEvents = events.map((event, index) => {
         return (
-            <label key={index}>
-                <input
-                    type="radio"
-                    value={event}
-                    name="event"
-                    checked={selected === event}
-                    onChange={(e) => handleChange(e)}
-                />
+            <div
+                className={`event click_box__div ${selected === event ? "selected" : ""}`}
+                onClick={() => handleClick(event)}
+                key={index}
+            >
                 {event}
-            </label>
+            </div>
         );
     });
+
     return (
-        <section className="event select">
-            <div className="select__radios">{mappedInputs}</div>
+        <section className="event_container click_component">
+            <div className="click_box click_box__event">{boxEvents}</div>
             <BackNextButtons compNav={compNav} />
         </section>
     );
