@@ -24,7 +24,6 @@ const EventSelect: React.FC<Props> = ({ compNav, handleBoxClick, event }) => {
     const handleClick = (val: string) => {
         setSelected(val);
         handleBoxClick("event", val);
-        compNav("next");
     };
 
     const boxEvents = events.map((event, index) => {
