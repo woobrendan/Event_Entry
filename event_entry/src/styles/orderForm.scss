@@ -18,7 +18,7 @@
     }
 
     //** Ticket Type components */
-    .ticket_type_container, .series_container {
+    .ticket_type_container, .series_container, .click_component {
         height: 100%;
         width: 100%;
         align-items: center;
@@ -34,6 +34,13 @@
             width: 100%;
             justify-content: center;
             align-items: center;
+            font-weight: bold;
+            font-size: 2vw;
+
+            //for event select, make gap smaller
+            &__event {
+                gap: 3%
+            }
             
             &__div {
                 width: 70%;
@@ -42,8 +49,6 @@
                 text-align: center;
                 line-height: 250%;
                 cursor: pointer;
-                font-weight: bold;
-                font-size: 2vw;
                 border-radius: 6px;
 
                 &.selected {
@@ -51,6 +56,10 @@
                     color: #db2525;
                     border: 1px solid red;
                 }
+            }
+
+            &__div, .event {
+                line-height: 150%;
             }
         }
     }
