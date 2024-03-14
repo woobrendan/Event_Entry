@@ -34,7 +34,7 @@ const SeriesSelect: React.FC<Props> = ({ compNav, handleBoxClick, series }) => {
         );
     });
     return (
-        <section className="series_container">
+        <section className="series_container click_component">
             <div className="click_box">{boxSeries}</div>
             <BackNextButtons compNav={compNav} />
         </section>
