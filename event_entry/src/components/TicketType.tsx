@@ -29,7 +29,7 @@ const TicketType: React.FC<ClickAndNav> = ({ handleBoxClick, compNav }) => {
     });
 
     return (
-        <section className="ticket_type_container">
+        <section className="ticket_type_container click_component">
             <div className="click_box">{boxTickets}</div>
         </section>
     );
