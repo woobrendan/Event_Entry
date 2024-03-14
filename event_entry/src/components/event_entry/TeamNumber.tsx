@@ -7,6 +7,7 @@ const TeamNumber: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
     const [details, setDetails] = useState({
         number: "",
         team: "",
+        vehicle: "",
     });
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +37,21 @@ const TeamNumber: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
                 <select name="team" value={details.team} onInput={handleSelect}>
                     <option value="" disabled>
                         Select Team
+                    </option>
+                    {teams.map((team, index) => {
+                        return (
+                            <option value={team} key={index}>
+                                {team}
+                            </option>
+                        );
+                    })}
+                </select>
+            </div>
+            <div className="input__team">
+                <label>Vehicle:</label>
+                <select name="vehicle" value={details.team} onInput={handleSelect}>
+                    <option value="" disabled>
+                        Select Vehicle
                     </option>
                     {teams.map((team, index) => {
                         return (
