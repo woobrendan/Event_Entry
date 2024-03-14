@@ -5,10 +5,11 @@ import { useState } from "react";
 
 interface Props extends ClickAndNav {
     series: string;
+    classif: string;
 }
 
-const ClassSelect: React.FC<Props> = ({ series, handleBoxClick, compNav }) => {
-    const [selected, setSelected] = useState("");
+const ClassSelect: React.FC<Props> = ({ series, handleBoxClick, compNav, classif }) => {
+    const [selected, setSelected] = useState(classif ? classif : "");
     const classList: { [key: string]: string[] } = {
         gtwc: ["Pro", "Pro-Am", "Am"],
         gt4a: ["Silver", "Pro-Am", "Am"],
