@@ -2,13 +2,22 @@ import { useState } from "react";
 import { SetAndNav } from "../../models/props";
 import { teams } from "../../seeds/teams";
 import BackNextButtons from "../BackNextButtons";
+import vehicles from "../../seeds/vehicles";
+import { getSeriesShort } from "../../functions/helpers";
 
-const TeamNumber: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
+interface Props extends SetAndNav {
+    series: string;
+    classif: string;
+}
+
+const TeamNumber: React.FC<Props> = ({ compNav, handleFormElement, series, classif }) => {
     const [details, setDetails] = useState({
         number: "",
         team: "",
         vehicle: "",
     });
+
+    series = getSeriesShort(series);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setDetails((prev) => ({
@@ -24,6 +33,16 @@ const TeamNumber: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
             [e.target.name]: e.target.value,
         }));
         handleFormElement(e);
+    };
+
+    const getVehicleArr = (series: string, classif: string): string[] => {
+        const seriesData = vehicles[series];
+        if (Array.isArray(seriesData)) {
+            return seriesData;
+        } else {
+            const classVehicles = seriesData[classif];
+            return classVehicles;
+        }
     };
 
     return (
