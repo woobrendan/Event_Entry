@@ -68,14 +68,14 @@ const TeamNumber: React.FC<Props> = ({ compNav, handleFormElement, series, class
             </div>
             <div className="input__team">
                 <label>Vehicle:</label>
-                <select name="vehicle" value={details.team} onInput={handleSelect}>
+                <select name="vehicle" value={details.vehicle} onInput={handleSelect}>
                     <option value="" disabled>
                         Select Vehicle
                     </option>
-                    {teams.map((team, index) => {
+                    {getVehicleArr(series, classif).map((vehicle, index) => {
                         return (
-                            <option value={team} key={index}>
-                                {team}
+                            <option value={vehicle} key={index}>
+                                {vehicle}
                             </option>
                         );
                     })}
