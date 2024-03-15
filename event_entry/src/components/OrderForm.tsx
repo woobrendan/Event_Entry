@@ -43,8 +43,13 @@ const OrderForm: React.FC = () => {
         <TicketType handleBoxClick={handleBoxClick} compNav={compNav} />,
         <EventSelect handleBoxClick={handleBoxClick} compNav={compNav} event={order.event} />,
         <SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} />,
-        <ClassSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} />,
-        <TeamNumber handleFormElement={handleFormElement} compNav={compNav} />,
+        <ClassSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} classif={order.class} />,
+        <TeamNumber
+            handleFormElement={handleFormElement}
+            compNav={compNav}
+            series={order.series}
+            classif={order.class}
+        />,
     ];
 
     const CurrentComponent = components[currentComp];
