@@ -5,7 +5,7 @@ import TicketType from "./TicketType";
 import NewOrder from "./NewOrder";
 import SeriesSelect from "./event_entry/SeriesSelect";
 import EventSelect from "./event_entry/EventSelect";
-import TeamNumber from "./event_entry/TeamNumber";
+import EntryInfo from "./event_entry/EntryInfo";
 import ClassSelect from "./event_entry/ClassSelect";
 
 import "../styles/orderForm.scss";
@@ -50,7 +50,7 @@ const OrderForm: React.FC = () => {
         <EventSelect handleBoxClick={handleBoxClick} compNav={compNav} event={order.event} />,
         <SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} />,
         <ClassSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} classif={order.class} />,
-        <TeamNumber handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
+        <EntryInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
     ];
 
     const CurrentComponent = components[currentComp];
