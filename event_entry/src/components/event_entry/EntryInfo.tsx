@@ -9,7 +9,7 @@ interface Props extends SetAndNav {
     eventOrder: EventOrder;
 }
 
-const TeamNumber: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) => {
+const EntryInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) => {
     const { team = "", number = "", vehicle = "", sponsors = "" } = eventOrder;
 
     const [details, setDetails] = useState({
@@ -92,4 +92,4 @@ const TeamNumber: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
     );
 };
 
-export default TeamNumber;
+export default EntryInfo;
