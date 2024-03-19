@@ -10,10 +10,12 @@ interface Props extends SetAndNav {
 }
 
 const TeamNumber: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) => {
+    const { team, number, vehicle } = eventOrder;
+
     const [details, setDetails] = useState({
-        number: "",
-        team: "",
-        vehicle: "",
+        number: number ? number : "",
+        team: team ? team : "",
+        vehicle: vehicle ? vehicle : "",
     });
 
     const series = getSeriesShort(eventOrder.series);
