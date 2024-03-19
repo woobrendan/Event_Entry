@@ -1,23 +1,22 @@
 import { useState } from "react";
-import { SetAndNav } from "../../models/props";
+import { SetAndNav, EventOrder } from "../../models/props";
 import { teams } from "../../seeds/teams";
 import BackNextButtons from "../BackNextButtons";
 import vehicles from "../../seeds/vehicles";
 import { getSeriesShort } from "../../functions/helpers";
 
 interface Props extends SetAndNav {
-    series: string;
-    classif: string;
+    eventOrder: EventOrder;
 }
 
-const TeamNumber: React.FC<Props> = ({ compNav, handleFormElement, series, classif }) => {
+const TeamNumber: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) => {
     const [details, setDetails] = useState({
         number: "",
         team: "",
         vehicle: "",
     });
 
-    series = getSeriesShort(series);
+    const series = getSeriesShort(eventOrder.series);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setDetails((prev) => ({
@@ -72,7 +71,7 @@ const TeamNumber: React.FC<Props> = ({ compNav, handleFormElement, series, class
                     <option value="" disabled>
                         Select Vehicle
                     </option>
-                    {getVehicleArr(series, classif).map((vehicle, index) => {
+                    {getVehicleArr(series, eventOrder.class).map((vehicle, index) => {
                         return (
                             <option value={vehicle} key={index}>
                                 {vehicle}
@@ -81,6 +80,7 @@ const TeamNumber: React.FC<Props> = ({ compNav, handleFormElement, series, class
                     })}
                 </select>
             </div>
+            {/* Sponsor box */}
             <BackNextButtons compNav={compNav} />
         </section>
     );
