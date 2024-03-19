@@ -10,12 +10,13 @@ interface Props extends SetAndNav {
 }
 
 const TeamNumber: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) => {
-    const { team = "", number = "", vehicle = "" } = eventOrder;
+    const { team = "", number = "", vehicle = "", sponsors = "" } = eventOrder;
 
     const [details, setDetails] = useState({
         number,
         team,
         vehicle,
+        sponsors,
     });
 
     const series = getSeriesShort(eventOrder.series);
@@ -82,7 +83,10 @@ const TeamNumber: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
                     })}
                 </select>
             </div>
-            {/* Sponsor box */}
+            <div className=" sponsors">
+                <label>Sponsors (Please separate sponsors with comma):</label>
+                <input value={details.sponsors} name="sponsors" onInput={handleInput} />
+            </div>
             <BackNextButtons compNav={compNav} />
         </section>
     );
