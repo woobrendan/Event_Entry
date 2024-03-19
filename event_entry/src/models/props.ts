@@ -15,4 +15,5 @@ export interface EventOrder {
     number: string;
     team: string;
     sponsors: string;
+    vehicle: string;
 }
