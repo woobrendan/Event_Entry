@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { ClickAndNav } from "../models/props";
 
-const TicketType: React.FC<ClickAndNav> = ({ handleBoxClick, compNav }) => {
-    const [selected, setSelected] = useState("");
+interface Props extends ClickAndNav {
+    type: string;
+}
+
+const TicketType: React.FC<Props> = ({ type = "", handleBoxClick, compNav }) => {
+    const [selected, setSelected] = useState(type);
 
     const ticketTypes = [
         { value: "event", label: "Event Entry" },
