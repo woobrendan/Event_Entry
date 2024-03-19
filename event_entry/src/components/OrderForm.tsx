@@ -12,10 +12,15 @@ import "../styles/orderForm.scss";
 
 const OrderForm: React.FC = () => {
     // each order will indicate type, at end add to redux cart
+    // when ticket type set, set state keys (event class etc)
     const [order, setOrder] = useState({
         event: "",
         series: "",
         class: "",
+        number: "",
+        team: "",
+        vehicle: "",
+        sponsors: "",
     });
 
     const [currentComp, setCurrentComp] = useState(0);
@@ -44,12 +49,7 @@ const OrderForm: React.FC = () => {
         <EventSelect handleBoxClick={handleBoxClick} compNav={compNav} event={order.event} />,
         <SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} />,
         <ClassSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} classif={order.class} />,
-        <TeamNumber
-            handleFormElement={handleFormElement}
-            compNav={compNav}
-            series={order.series}
-            classif={order.class}
-        />,
+        <TeamNumber handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
     ];
 
     const CurrentComponent = components[currentComp];
