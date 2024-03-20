@@ -20,7 +20,7 @@ export interface EventOrder {
     vehicle: string;
 }
 
-export interface DriverInfo {
+export interface DriverInfoInterface {
     driverName: string;
     driverNAT: string;
     fiaCAT: string;
