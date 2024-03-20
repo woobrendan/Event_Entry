@@ -17,3 +17,12 @@ export interface EventOrder {
     sponsors: string;
     vehicle: string;
 }
+
+export interface DriverInfo {
+    driverName: string;
+    driverNAT: string;
+    fiaCAT: string;
+    hometown: string;
+    email: string;
+    cell: string;
+}
