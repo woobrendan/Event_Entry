@@ -106,9 +106,10 @@
             flex-direction: column;
             height: 100px;
 
-            input {
+            textarea {
                 height: 60%;
-                font-size: larger;
+                overflow: auto;
+                resize: both;
             }
         }
         
