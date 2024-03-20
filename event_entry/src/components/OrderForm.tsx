@@ -30,7 +30,9 @@ const OrderForm: React.FC = () => {
         val === "next" ? setCurrentComp(currentComp + 1) : setCurrentComp(currentComp - 1);
     };
 
-    const handleFormElement = <T extends HTMLInputElement | HTMLSelectElement>(e: React.ChangeEvent<T>) => {
+    const handleFormElement = <T extends HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+        e: React.ChangeEvent<T>,
+    ) => {
         setOrder((prev) => ({
             ...prev,
             [e.target.name]: e.target.value,
