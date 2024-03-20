@@ -29,6 +29,14 @@ const EntryInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) 
         handleFormElement(e);
     };
 
+    const handleTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setDetails((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
+        handleFormElement(e);
+    };
+
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setDetails((prev) => ({
             ...prev,
@@ -85,7 +93,13 @@ const EntryInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) 
             </div>
             <div className=" sponsors">
                 <label>Sponsors (Please separate sponsors with comma):</label>
-                <input value={details.sponsors} name="sponsors" onInput={handleInput} />
+                <textarea
+                    rows={4}
+                    cols={50}
+                    value={details.sponsors}
+                    name="sponsors"
+                    onChange={handleTextArea}
+                ></textarea>
             </div>
             <BackNextButtons compNav={compNav} />
         </section>
