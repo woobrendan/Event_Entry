@@ -7,6 +7,7 @@ import SeriesSelect from "./event_entry/SeriesSelect";
 import EventSelect from "./event_entry/EventSelect";
 import EntryInfo from "./event_entry/EntryInfo";
 import ClassSelect from "./event_entry/ClassSelect";
+import DriverInfo from "./event_entry/DriverInfo";
 
 import "../styles/orderForm.scss";
 
@@ -53,6 +54,7 @@ const OrderForm: React.FC = () => {
         <SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} />,
         <ClassSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} classif={order.class} />,
         <EntryInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
+        <DriverInfo handleFormElement={handleFormElement} compNav={compNav} />,
     ];
 
     const CurrentComponent = components[currentComp];
