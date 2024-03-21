@@ -1,6 +1,7 @@
 import { SetAndNav, DriverInfoInterface } from "../../models/props";
 import { useState } from "react";
 import drivers from "../../seeds/drivers";
+import countryCodes from "../../seeds/countryCodes";
 import BackNextButtons from "../BackNextButtons";
 import SelectElements from "./SelectElements";
 
@@ -31,6 +32,14 @@ const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
                 value={driverEntry.driverName}
                 onInput={handleSelect}
                 valArr={drivers}
+            />
+            <SelectElements
+                label="Nationality"
+                className="input__driver"
+                name="driverNAT"
+                value={driverEntry.driverNAT}
+                onInput={handleSelect}
+                valArr={countryCodes}
             />
             <BackNextButtons compNav={compNav} />
         </section>
