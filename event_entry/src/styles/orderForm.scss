@@ -88,7 +88,7 @@
     }
 
     // Team and Number Component ////
-    .team_info {
+    .input {
         flex-direction: column;
         display: flex;
         height: 80%;
@@ -113,7 +113,7 @@
             }
         }
         
-        .input__team {
+        .input__team, .input__driver {
             width: 100%;
             display: flex;
             justify-content: space-between;
