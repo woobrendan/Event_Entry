@@ -1,6 +1,7 @@
 import { SetAndNav, DriverInfoInterface } from "../../models/props";
 import { useState } from "react";
 import drivers from "../../seeds/drivers";
+import BackNextButtons from "../BackNextButtons";
 
 const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
     const [driverEntry, setDriverEntry] = useState({
@@ -20,9 +21,9 @@ const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
         handleFormElement(e);
     };
     return (
-        <section>
+        <section className="driver_info input">
             <div className="input__driver">
-                <label>driver:</label>
+                <label>Driver:</label>
                 <select name="driverName" value={driverEntry.driverName} onInput={handleSelect}>
                     <option value="" disabled>
                         Select Driver
@@ -36,6 +37,7 @@ const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
                     })}
                 </select>
             </div>
+            <BackNextButtons compNav={compNav} />
         </section>
     );
 };
