@@ -1,15 +1,24 @@
-const SelectElements: React.FC = () => {
+interface Select {
+    label: string;
+    className: string;
+    name: string;
+    value: string;
+    onInput: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    valArr: string[];
+}
+
+const SelectElements: React.FC<Select> = ({ label, className, name, value, onInput, valArr }) => {
     return (
         <div className="input__driver">
-            <label>Driver:</label>
-            <select name="driverName" value={driverEntry.driverName} onInput={handleSelect}>
+            <label>{label}:</label>
+            <select name={name} value={value} onInput={onInput}>
                 <option value="" disabled>
                     Select Driver
                 </option>
-                {drivers.sort().map((driver, index) => {
+                {valArr.map((val, index) => {
                     return (
-                        <option value={driver} key={index}>
-                            {driver}
+                        <option value={val} key={index}>
+                            {val}
                         </option>
                     );
                 })}
