@@ -8,8 +8,12 @@ interface Select {
 }
 
 const SelectElements: React.FC<Select> = ({ label, className, name, value, onInput, valArr }) => {
+    if (name === "driverName") {
+        valArr = valArr.sort();
+    }
+
     return (
-        <div className="input__driver">
+        <div className={className}>
             <label>{label}:</label>
             <select name={name} value={value} onInput={onInput}>
                 <option value="" disabled>
