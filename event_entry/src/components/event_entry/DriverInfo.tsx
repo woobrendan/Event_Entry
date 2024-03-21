@@ -1,8 +1,9 @@
-import { SetAndNav, DriverInfo } from "../../models/props";
+import { SetAndNav, DriverInfoInterface } from "../../models/props";
 import { useState } from "react";
+import drivers from "../../seeds/drivers";
 
 const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
-    const [driver, setDriver] = useState({
+    const [driverEntry, setDriverEntry] = useState({
         driverName: "",
         driverNAT: "",
         fiaCAT: "",
@@ -12,13 +13,31 @@ const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
     });
 
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setDriver((prev) => ({
+        setDriverEntry((prev) => ({
             ...prev,
             [e.target.name]: e.target.value,
         }));
         handleFormElement(e);
     };
-    return <></>;
+    return (
+        <section>
+            <div className="input__driver">
+                <label>driver:</label>
+                <select name="driverName" value={driverEntry.driverName} onInput={handleSelect}>
+                    <option value="" disabled>
+                        Select Driver
+                    </option>
+                    {drivers.map((driver, index) => {
+                        return (
+                            <option value={driver} key={index}>
+                                {driver}
+                            </option>
+                        );
+                    })}
+                </select>
+            </div>
+        </section>
+    );
 };
 
 export default DriverInfo;
