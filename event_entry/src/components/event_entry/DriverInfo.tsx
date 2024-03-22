@@ -23,6 +23,14 @@ const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
         handleFormElement(e);
     };
 
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setDriverEntry((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
+        handleFormElement(e);
+    };
+
     return (
         <section className="driver_info input">
             <SelectElements
@@ -49,6 +57,10 @@ const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
                 onInput={handleSelect}
                 valArr={["N/A", "Bronze", "Silver", "Gold", "Platinum"]}
             />
+            <div className="input__team">
+                <label>Driver Hometown:</label>
+                <input value={driverEntry.hometown} name="hometown" onInput={handleInput} />
+            </div>
             <BackNextButtons compNav={compNav} />
         </section>
     );
