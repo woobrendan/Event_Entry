@@ -4,6 +4,7 @@ import { teams } from "../../seeds/teams";
 import BackNextButtons from "../BackNextButtons";
 import vehicles from "../../seeds/vehicles";
 import { getSeriesShort } from "../../functions/helpers";
+import SelectElements from "./SelectElements";
 
 interface Props extends SetAndNav {
     eventOrder: EventOrder;
@@ -61,21 +62,14 @@ const EntryInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) 
                 <label>Car Number:</label>
                 <input type="number" value={details.number} name="number" onInput={handleInput} />
             </div>
-            <div className="input__team">
-                <label>Team:</label>
-                <select name="team" value={details.team} onInput={handleSelect}>
-                    <option value="" disabled>
-                        Select Team
-                    </option>
-                    {teams.map((team, index) => {
-                        return (
-                            <option value={team} key={index}>
-                                {team}
-                            </option>
-                        );
-                    })}
-                </select>
-            </div>
+            <SelectElements
+                label="Team"
+                className="input__team"
+                name="team"
+                value={details.team}
+                onInput={handleSelect}
+                valArr={teams}
+            />
             <div className="input__team">
                 <label>Vehicle:</label>
                 <select name="vehicle" value={details.vehicle} onInput={handleSelect}>
