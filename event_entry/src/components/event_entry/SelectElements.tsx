@@ -17,7 +17,7 @@ const SelectElements: React.FC<Select> = ({ label, className, name, value, onInp
             <label>{label}:</label>
             <select name={name} value={value} onInput={onInput}>
                 <option value="" disabled>
-                    Select Driver
+                    Select {label}
                 </option>
                 {valArr.map((val, index) => {
                     return (
