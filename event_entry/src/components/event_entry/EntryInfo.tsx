@@ -60,7 +60,13 @@ const EntryInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) 
         <section className="team_info input">
             <div className="input__team">
                 <label>Car Number:</label>
-                <input type="number" value={details.number} name="number" onInput={handleInput} />
+                <input
+                    className="input__team__number "
+                    type="number"
+                    value={details.number}
+                    name="number"
+                    onInput={handleInput}
+                />
             </div>
             <SelectElements
                 label="Team"
