@@ -61,6 +61,10 @@ const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
                 <label>Driver Hometown:</label>
                 <input value={driverEntry.hometown} name="hometown" onInput={handleInput} />
             </div>
+            <div className="input__team">
+                <label>Driver Email:</label>
+                <input type="email" value={driverEntry.email} name="email" onInput={handleInput} />
+            </div>
             <BackNextButtons compNav={compNav} />
         </section>
     );
