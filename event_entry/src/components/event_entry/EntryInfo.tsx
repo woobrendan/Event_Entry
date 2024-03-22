@@ -70,21 +70,14 @@ const EntryInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) 
                 onInput={handleSelect}
                 valArr={teams}
             />
-            <div className="input__team">
-                <label>Vehicle:</label>
-                <select name="vehicle" value={details.vehicle} onInput={handleSelect}>
-                    <option value="" disabled>
-                        Select Vehicle
-                    </option>
-                    {getVehicleArr(series, eventOrder.class).map((vehicle, index) => {
-                        return (
-                            <option value={vehicle} key={index}>
-                                {vehicle}
-                            </option>
-                        );
-                    })}
-                </select>
-            </div>
+            <SelectElements
+                label="Vehicle"
+                className="input__team"
+                name="vehicle"
+                value={details.vehicle}
+                onInput={handleSelect}
+                valArr={getVehicleArr(series, eventOrder.class)}
+            />
             <div className=" sponsors">
                 <label>Sponsors (Please separate sponsors with comma):</label>
                 <textarea
