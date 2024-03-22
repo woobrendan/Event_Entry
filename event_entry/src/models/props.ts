@@ -28,3 +28,12 @@ export interface DriverInfoInterface {
     email: string;
     cell: string;
 }
+
+interface driver {
+    name: string;
+    NAT: string;
+    fiaCAT: string;
+    hometown: string;
+    email: string;
+    cell: string;
+}
