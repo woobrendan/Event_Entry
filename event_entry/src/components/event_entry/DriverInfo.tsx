@@ -41,6 +41,14 @@ const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
                 onInput={handleSelect}
                 valArr={countryCodes}
             />
+            <SelectElements
+                label="FIA Rating"
+                className="input__driver"
+                name="fiaCAT"
+                value={driverEntry.fiaCAT}
+                onInput={handleSelect}
+                valArr={["N/A", "Bronze", "Silver", "Gold", "Platinum"]}
+            />
             <BackNextButtons compNav={compNav} />
         </section>
     );
