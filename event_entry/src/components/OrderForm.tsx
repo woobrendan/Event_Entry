@@ -47,7 +47,7 @@ const OrderForm: React.FC = () => {
         <SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} />,
         <ClassSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} classif={order.class} />,
         <EntryInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
-        <DriverInfo handleFormElement={handleFormElement} compNav={compNav} />,
+        <DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
     ];
 
     const CurrentComponent = components[currentComp];
