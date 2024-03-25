@@ -10,4 +10,23 @@ const getSeriesShort = (series: string): string => {
     return seriesList[series];
 };
 
-export { getSeriesShort };
+const initialEventOrder = {
+    type: "",
+    event: "",
+    series: "",
+    class: "",
+    number: "",
+    team: "",
+    vehicle: "",
+    sponsors: "",
+    driver1: {
+        driverName: "",
+        driverNAT: "",
+        fiaCAT: "",
+        hometown: "",
+        email: "",
+        cell: "",
+    },
+};
+
+export { getSeriesShort, initialEventOrder };
