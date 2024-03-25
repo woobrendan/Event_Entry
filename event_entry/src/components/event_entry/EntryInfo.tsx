@@ -56,6 +56,8 @@ const EntryInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) 
         }
     };
 
+    const isValid = Object.values(details).every((value) => Boolean(value));
+
     return (
         <section className="team_info input">
             <div className="input__team">
@@ -94,7 +96,7 @@ const EntryInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) 
                     onChange={handleTextArea}
                 ></textarea>
             </div>
-            <BackNextButtons compNav={compNav} />
+            <BackNextButtons compNav={compNav} isValid={isValid} />
         </section>
     );
 };
