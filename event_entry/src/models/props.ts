@@ -11,6 +11,7 @@ export interface ClickAndNav {
 }
 
 export interface EventOrder {
+    type: string;
     event: string;
     series: string;
     class: string;
@@ -18,20 +19,13 @@ export interface EventOrder {
     team: string;
     sponsors: string;
     vehicle: string;
+    driver1: DriverInfoInterface;
+    driver2?: DriverInfoInterface;
 }
 
 export interface DriverInfoInterface {
     driverName: string;
     driverNAT: string;
-    fiaCAT: string;
-    hometown: string;
-    email: string;
-    cell: string;
-}
-
-interface driver {
-    name: string;
-    NAT: string;
     fiaCAT: string;
     hometown: string;
     email: string;
