@@ -6,7 +6,7 @@ import BackNextButtons from "../BackNextButtons";
 import SelectElements from "./SelectElements";
 
 const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
-    const [driverEntry, setDriverEntry] = useState({
+    const [driverEntry, setDriverEntry] = useState<DriverInfoInterface>({
         driverName: "",
         driverNAT: "",
         fiaCAT: "",
@@ -69,7 +69,7 @@ const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
                 <label>Driver Cell:</label>
                 <input type="tel" value={driverEntry.cell} name="cell" onInput={handleInput} />
             </div>
-            <BackNextButtons compNav={compNav} />
+            <BackNextButtons compNav={compNav} isValid={false} />
         </section>
     );
 };
