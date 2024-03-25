@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { EventOrder } from "../models/props";
+import { initialEventOrder } from "../functions/helpers";
 
 //** Components */
 import TicketType from "./TicketType";
@@ -14,16 +16,7 @@ import "../styles/orderForm.scss";
 const OrderForm: React.FC = () => {
     // each order will indicate type, at end add to redux cart
     // when ticket type set, set state keys (event class etc)
-    const [order, setOrder] = useState({
-        type: "",
-        event: "",
-        series: "",
-        class: "",
-        number: "",
-        team: "",
-        vehicle: "",
-        sponsors: "",
-    });
+    const [order, setOrder] = useState<EventOrder>(initialEventOrder);
 
     const [currentComp, setCurrentComp] = useState(0);
 
