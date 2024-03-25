@@ -37,7 +37,7 @@ const ClassSelect: React.FC<Props> = ({ series, handleBoxClick, compNav, classif
     return (
         <section className="class_select_container click_component">
             <div className="click_box">{boxClass}</div>
-            <BackNextButtons compNav={compNav} />
+            <BackNextButtons compNav={compNav} isValid={selected ? true : false} />
         </section>
     );
 };
