@@ -41,7 +41,7 @@ const EventSelect: React.FC<Props> = ({ compNav, handleBoxClick, event }) => {
     return (
         <section className="event_container click_component">
             <div className="click_box click_box__event">{boxEvents}</div>
-            <BackNextButtons compNav={compNav} />
+            <BackNextButtons compNav={compNav} isValid={selected ? true : false} />
         </section>
     );
 };
