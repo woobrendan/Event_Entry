@@ -1,18 +1,23 @@
-import { SetAndNav, DriverInfoInterface } from "../../models/props";
+import { SetAndNav, DriverInfoInterface, EventOrder } from "../../models/props";
 import { useState } from "react";
 import drivers from "../../seeds/drivers";
 import countryCodes from "../../seeds/countryCodes";
 import BackNextButtons from "../BackNextButtons";
 import SelectElements from "./SelectElements";
 
-const DriverInfo: React.FC<SetAndNav> = ({ compNav, handleFormElement }) => {
+interface Props extends SetAndNav {
+    eventOrder: EventOrder;
+}
+
+const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) => {
+    const { driverName = "", driverNAT = "", fiaCAT = "", hometown = "", email = "", cell = "" } = eventOrder.driver1;
     const [driverEntry, setDriverEntry] = useState<DriverInfoInterface>({
-        driverName: "",
-        driverNAT: "",
-        fiaCAT: "",
-        hometown: "",
-        email: "",
-        cell: "",
+        driverName,
+        driverNAT,
+        fiaCAT,
+        hometown,
+        email,
+        cell,
     });
 
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
