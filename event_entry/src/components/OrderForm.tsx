@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { EventOrder } from "../models/props";
-import { initialEventOrder } from "../functions/helpers";
+import { getSeriesShort, initialEventOrder } from "../functions/helpers";
 
 //** Components */
 import TicketType from "./TicketType";
@@ -43,6 +43,15 @@ const OrderForm: React.FC = () => {
         }));
     };
 
+    const isDualDriver = (seriesStr: string) => {
+        const name = getSeriesShort(seriesStr);
+
+        if (name === "gtwc" || name === "gt4a") {
+            return true;
+        } else {
+            return false;
+        }
+    };
     const components = [
         <NewOrder compNav={compNav} />,
         <TicketType handleBoxClick={handleBoxClick} compNav={compNav} type={order.type} />,
@@ -51,6 +60,9 @@ const OrderForm: React.FC = () => {
         <ClassSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} classif={order.class} />,
         <EntryInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
         <DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
+        isDualDriver(order.series) && (
+            <DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />
+        ),
     ];
 
     const CurrentComponent = components[currentComp];
