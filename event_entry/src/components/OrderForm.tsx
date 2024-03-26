@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EventOrder } from "../models/props";
 import { getSeriesShort, initialEventOrder } from "../functions/helpers";
 
@@ -52,7 +52,8 @@ const OrderForm: React.FC = () => {
             return false;
         }
     };
-    const components = [
+
+    const [componentsArr, setComponentsArr] = useState([
         <NewOrder compNav={compNav} />,
         <TicketType handleBoxClick={handleBoxClick} compNav={compNav} type={order.type} />,
         <EventSelect handleBoxClick={handleBoxClick} compNav={compNav} event={order.event} />,
@@ -60,12 +61,36 @@ const OrderForm: React.FC = () => {
         <ClassSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} classif={order.class} />,
         <EntryInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
         <DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
-        isDualDriver(order.series) && (
-            <DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />
-        ),
-    ];
+    ]);
 
-    const CurrentComponent = components[currentComp];
+    //const eventTicketComps = [
+    //    <EntryInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
+    //    <DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
+    //];
+
+    useEffect(() => {
+        if (isDualDriver(order.series)) {
+            setComponentsArr((prev) => [
+                ...prev,
+                <DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
+            ]);
+        }
+    }, [order.series, compNav]);
+
+    //const components = [
+    //    <NewOrder compNav={compNav} />,
+    //    <TicketType handleBoxClick={handleBoxClick} compNav={compNav} type={order.type} />,
+    //    <EventSelect handleBoxClick={handleBoxClick} compNav={compNav} event={order.event} />,
+    //    <SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} />,
+    //    <ClassSelect handleBoxClick={handleBoxClick} compNav={compNav} series={order.series} classif={order.class} />,
+    //    <EntryInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
+    //    <DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />,
+    //    isDualDriver(order.series) && (
+    //        <DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={order} />
+    //    ),
+    //];
+
+    const CurrentComponent = componentsArr[currentComp];
 
     return <section className="order_form_container">{CurrentComponent}</section>;
 };
