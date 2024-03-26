@@ -25,7 +25,7 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
             ...prev,
             [e.target.name]: e.target.value,
         }));
-        handleFormElement(e);
+        handleFormElement(e, "driver1");
     };
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +33,7 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
             ...prev,
             [e.target.name]: e.target.value,
         }));
-        handleFormElement(e);
+        handleFormElement(e, "driver1");
     };
 
     return (
