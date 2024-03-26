@@ -161,6 +161,7 @@ const vehicles: { [key: string]: string[] | { [key: string]: string[] } } = {
             "Subaru BRZ (2022 - )",
         ],
     },
+    grCup: ["Toyota GR86"],
 };
 
 export default vehicles;
