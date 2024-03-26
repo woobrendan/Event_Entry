@@ -28,20 +28,12 @@ const OrderForm: React.FC = () => {
         e: React.ChangeEvent<T>,
         driver?: string,
     ) => {
-        if (driver === "driver1") {
-            setOrder((prev) => ({
-                ...prev,
-                driver1: {
-                    ...prev.driver1,
-                    [e.target.name]: e.target.value,
-                },
-            }));
-        } else {
-            setOrder((prev) => ({
-                ...prev,
-                [e.target.name]: e.target.value,
-            }));
-        }
+        setOrder((prev) => ({
+            ...prev,
+            ...(driver === "driver1"
+                ? { driver1: { ...prev.driver1, [e.target.name]: e.target.value } }
+                : { [e.target.name]: e.target.value }),
+        }));
     };
 
     const handleBoxClick = (name: string, val: string) => {
