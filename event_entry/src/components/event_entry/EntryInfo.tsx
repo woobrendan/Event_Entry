@@ -56,7 +56,7 @@ const EntryInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) 
         }
     };
 
-    const isValid = Object.values(details).every((value) => Boolean(value));
+    const isValid = [details.number, details.team, details.vehicle].every((value) => Boolean(value));
 
     return (
         <section className="team_info input">
