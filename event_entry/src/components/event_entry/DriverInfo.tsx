@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import drivers from "../../seeds/drivers";
 import countryCodes from "../../seeds/countryCodes";
 import BackNextButtons from "../BackNextButtons";
-import SelectElements from "./SelectElements";
+import DriverSelectElement from "./DriverSelectElement";
 import { getSeriesShort } from "../../functions/helpers";
 
 interface Props extends SetAndNav {
@@ -27,67 +27,92 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
         setIsDualDriver(shortSeries === "gtwc" || shortSeries === "gt4a");
     }, [eventOrder.series]);
 
-    const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>, driverNum: string) => {
+        const driverStr = `driver${driverNum}`;
         setDriverEntry((prev) => ({
             ...prev,
-            [e.target.name]: e.target.value,
+            [driverStr]: {
+                [e.target.name]: e.target.value,
+            },
         }));
-        handleFormElement(e, "driver1");
+        handleFormElement(e, driverStr);
     };
 
-    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>, driverNum: string) => {
+        const driverStr = `driver${driverNum}`;
         setDriverEntry((prev) => ({
             ...prev,
-            [e.target.name]: e.target.value,
+            [driverStr]: {
+                [e.target.name]: e.target.value,
+            },
         }));
-        handleFormElement(e, "driver1");
+        handleFormElement(e, driverStr);
     };
 
-    const singleDriverInfo = (
-        <div className="driver_info__driver">
-            <SelectElements
-                label="Driver"
-                className="input__driver"
-                name="driverName"
-                value={driverEntry.driverName}
-                onInput={handleSelect}
-                valArr={drivers}
-            />
-            <SelectElements
-                label="Nationality"
-                className="input__driver"
-                name="driverNAT"
-                value={driverEntry.driverNAT}
-                onInput={handleSelect}
-                valArr={countryCodes}
-            />
-            <SelectElements
-                label="FIA Rating"
-                className="input__driver"
-                name="fiaCAT"
-                value={driverEntry.fiaCAT}
-                onInput={handleSelect}
-                valArr={["N/A", "Bronze", "Silver", "Gold", "Platinum"]}
-            />
-            <div className="input__team">
-                <label>Driver Hometown:</label>
-                <input value={driverEntry.hometown} name="hometown" onInput={handleInput} />
+    const singleDriverInfo = (driverNum: string) => {
+        return (
+            <div className="driver_info__driver">
+                <DriverSelectElement
+                    label={`Driver ${driverNum}`}
+                    className="input__driver"
+                    name="driverName"
+                    value={driverEntry.driverName}
+                    onInput={handleSelect}
+                    valArr={drivers}
+                    driverNum={driverNum}
+                />
+                <DriverSelectElement
+                    label="Nationality"
+                    className="input__driver"
+                    name="driverNAT"
+                    value={driverEntry.driverNAT}
+                    onInput={handleSelect}
+                    valArr={countryCodes}
+                    driverNum={driverNum}
+                />
+                <DriverSelectElement
+                    label="FIA Rating"
+                    className="input__driver"
+                    name="fiaCAT"
+                    value={driverEntry.fiaCAT}
+                    onInput={handleSelect}
+                    valArr={["N/A", "Bronze", "Silver", "Gold", "Platinum"]}
+                    driverNum={driverNum}
+                />
+                <div className="input__team">
+                    <label>Driver Hometown:</label>
+                    <input
+                        value={driverEntry.hometown}
+                        name="hometown"
+                        onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
+                    />
+                </div>
+                <div className="input__team">
+                    <label>Driver Email:</label>
+                    <input
+                        type="email"
+                        value={driverEntry.email}
+                        name="email"
+                        onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
+                    />
+                </div>
+                <div className="input__team">
+                    <label>Driver Cell:</label>
+                    <input
+                        type="tel"
+                        value={driverEntry.cell}
+                        name="cell"
+                        onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
+                    />
+                </div>
             </div>
-            <div className="input__team">
-                <label>Driver Email:</label>
-                <input type="email" value={driverEntry.email} name="email" onInput={handleInput} />
-            </div>
-            <div className="input__team">
-                <label>Driver Cell:</label>
-                <input type="tel" value={driverEntry.cell} name="cell" onInput={handleInput} />
-            </div>
-        </div>
-    );
+        );
+    };
 
     return (
         <section className="driver_info input">
-            {singleDriverInfo}
-            {isDualDriver && <>{singleDriverInfo}</>}
+            {singleDriverInfo("1")}
+            {isDualDriver && <>{singleDriverInfo("2")}</>}
             <BackNextButtons compNav={compNav} isValid={false} />
         </section>
     );
