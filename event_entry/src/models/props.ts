@@ -32,3 +32,8 @@ export interface DriverInfoInterface {
     email: string;
     cell: string;
 }
+
+export interface DriverObjInterfafce {
+    driver1: DriverInfoInterface;
+    driver2?: DriverInfoInterface;
+}
