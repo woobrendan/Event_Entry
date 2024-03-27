@@ -1,4 +1,4 @@
-import { SetAndNav, DriverObjInterface, EventOrder } from "../../models/props";
+import { SetAndNav, DriverObjInterface, DriverInfoInterface, EventOrder } from "../../models/props";
 import { useState, useEffect } from "react";
 import drivers from "../../seeds/drivers";
 import countryCodes from "../../seeds/countryCodes";
@@ -30,6 +30,7 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
         setDriverEntry((prev) => ({
             ...prev,
             [driverStr]: {
+                //...prev[driverStr],
                 [e.target.name]: e.target.value,
             },
         }));
@@ -41,6 +42,7 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
         setDriverEntry((prev) => ({
             ...prev,
             [driverStr]: {
+                //...prev[driverStr],
                 [e.target.name]: e.target.value,
             },
         }));
@@ -48,63 +50,67 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
     };
 
     const singleDriverInfo = (driverNum: string) => {
-        return (
-            <div className="driver_info__driver">
-                <DriverSelectElement
-                    label={`Driver ${driverNum}`}
-                    className="input__driver"
-                    name="driverName"
-                    value={driverEntry.driverName}
-                    onInput={handleSelect}
-                    valArr={drivers}
-                    driverNum={driverNum}
-                />
-                <DriverSelectElement
-                    label="Nationality"
-                    className="input__driver"
-                    name="driverNAT"
-                    value={driverEntry.driverNAT}
-                    onInput={handleSelect}
-                    valArr={countryCodes}
-                    driverNum={driverNum}
-                />
-                <DriverSelectElement
-                    label="FIA Rating"
-                    className="input__driver"
-                    name="fiaCAT"
-                    value={driverEntry.fiaCAT}
-                    onInput={handleSelect}
-                    valArr={["N/A", "Bronze", "Silver", "Gold", "Platinum"]}
-                    driverNum={driverNum}
-                />
-                <div className="input__team">
-                    <label>Driver Hometown:</label>
-                    <input
-                        value={driverEntry.hometown}
-                        name="hometown"
-                        onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
+        const driver = driverEntry[`driver${driverNum}` as keyof typeof driverEntry];
+        if (driver) {
+            const { driverName, driverNAT, fiaCAT, hometown, cell, email } = driver;
+            return (
+                <div className="driver_info__driver">
+                    <DriverSelectElement
+                        label={`Driver ${driverNum}`}
+                        className="input__driver"
+                        name="driverName"
+                        value={driverName}
+                        onInput={handleSelect}
+                        valArr={drivers}
+                        driverNum={driverNum}
                     />
-                </div>
-                <div className="input__team">
-                    <label>Driver Email:</label>
-                    <input
-                        type="email"
-                        value={driverEntry.email}
-                        name="email"
-                        onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
+                    <DriverSelectElement
+                        label="Nationality"
+                        className="input__driver"
+                        name="driverNAT"
+                        value={driverNAT}
+                        onInput={handleSelect}
+                        valArr={countryCodes}
+                        driverNum={driverNum}
                     />
-                </div>
-                <div className="input__team">
-                    <label>Driver Cell:</label>
-                    <input
-                        type="tel"
-                        value={driverEntry.cell}
-                        name="cell"
-                        onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
+                    <DriverSelectElement
+                        label="FIA Rating"
+                        className="input__driver"
+                        name="fiaCAT"
+                        value={fiaCAT}
+                        onInput={handleSelect}
+                        valArr={["N/A", "Bronze", "Silver", "Gold", "Platinum"]}
+                        driverNum={driverNum}
                     />
+                    <div className="input__team">
+                        <label>Driver Hometown:</label>
+                        <input
+                            value={hometown}
+                            name="hometown"
+                            onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
+                        />
+                    </div>
+                    <div className="input__team">
+                        <label>Driver Email:</label>
+                        <input
+                            type="email"
+                            value={email}
+                            name="email"
+                            onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
+                        />
+                    </div>
+                    <div className="input__team">
+                        <label>Driver Cell:</label>
+                        <input
+                            type="tel"
+                            value={cell}
+                            name="cell"
+                            onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
+                        />
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     };
 
     return (
