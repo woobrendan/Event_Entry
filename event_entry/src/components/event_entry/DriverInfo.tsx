@@ -1,16 +1,19 @@
 import { SetAndNav, DriverInfoInterface, EventOrder } from "../../models/props";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import drivers from "../../seeds/drivers";
 import countryCodes from "../../seeds/countryCodes";
 import BackNextButtons from "../BackNextButtons";
 import SelectElements from "./SelectElements";
+import { getSeriesShort } from "../../functions/helpers";
 
 interface Props extends SetAndNav {
     eventOrder: EventOrder;
 }
 
 const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) => {
+    const shortSeries = getSeriesShort(eventOrder.series);
     const { driverName = "", driverNAT = "", fiaCAT = "", hometown = "", email = "", cell = "" } = eventOrder.driver1;
+    const [isDualDriver, setIsDualDriver] = useState(shortSeries === "gtwc" || shortSeries === "gt4a");
     const [driverEntry, setDriverEntry] = useState<DriverInfoInterface>({
         driverName,
         driverNAT,
@@ -19,6 +22,10 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
         email,
         cell,
     });
+
+    useEffect(() => {
+        setIsDualDriver(shortSeries === "gtwc" || shortSeries === "gt4a");
+    }, [eventOrder.series]);
 
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setDriverEntry((prev) => ({
@@ -36,8 +43,8 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
         handleFormElement(e, "driver1");
     };
 
-    return (
-        <section className="driver_info input">
+    const singleDriverInfo = (
+        <div className="driver_info__driver">
             <SelectElements
                 label="Driver"
                 className="input__driver"
@@ -74,6 +81,13 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
                 <label>Driver Cell:</label>
                 <input type="tel" value={driverEntry.cell} name="cell" onInput={handleInput} />
             </div>
+        </div>
+    );
+
+    return (
+        <section className="driver_info input">
+            {singleDriverInfo}
+            {isDualDriver && <>{singleDriverInfo}</>}
             <BackNextButtons compNav={compNav} isValid={false} />
         </section>
     );
