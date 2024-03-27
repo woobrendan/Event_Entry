@@ -1,10 +1,10 @@
-import { SetAndNav, DriverInfoInterface, EventOrder } from "../../models/props";
+import { SetAndNav, DriverObjInterface, EventOrder } from "../../models/props";
 import { useState, useEffect } from "react";
 import drivers from "../../seeds/drivers";
 import countryCodes from "../../seeds/countryCodes";
 import BackNextButtons from "../BackNextButtons";
 import DriverSelectElement from "./DriverSelectElement";
-import { getSeriesShort } from "../../functions/helpers";
+import { getSeriesShort, singleDriverObj } from "../../functions/helpers";
 
 interface Props extends SetAndNav {
     eventOrder: EventOrder;
@@ -12,15 +12,13 @@ interface Props extends SetAndNav {
 
 const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) => {
     const shortSeries = getSeriesShort(eventOrder.series);
-    const { driverName = "", driverNAT = "", fiaCAT = "", hometown = "", email = "", cell = "" } = eventOrder.driver1;
+    //const { driverName = "", driverNAT = "", fiaCAT = "", hometown = "", email = "", cell = "" } = eventOrder.driver1;
+
     const [isDualDriver, setIsDualDriver] = useState(shortSeries === "gtwc" || shortSeries === "gt4a");
-    const [driverEntry, setDriverEntry] = useState<DriverInfoInterface>({
-        driverName,
-        driverNAT,
-        fiaCAT,
-        hometown,
-        email,
-        cell,
+
+    const [driverEntry, setDriverEntry] = useState<DriverObjInterface>({
+        driver1: { ...singleDriverObj },
+        ...(isDualDriver ? { driver2: { ...singleDriverObj } } : {}),
     });
 
     useEffect(() => {
