@@ -33,7 +33,7 @@ export interface DriverInfoInterface {
     cell: string;
 }
 
-export interface DriverObjInterfafce {
+export interface DriverObjInterface {
     driver1: DriverInfoInterface;
     driver2?: DriverInfoInterface;
 }
