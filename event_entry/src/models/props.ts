@@ -34,6 +34,5 @@ export interface DriverInfoInterface {
 }
 
 export interface DriverObjInterface {
-    driver1: DriverInfoInterface;
-    driver2?: DriverInfoInterface;
+    [key: string]: DriverInfoInterface;
 }
