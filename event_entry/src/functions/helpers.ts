@@ -29,4 +29,13 @@ const initialEventOrder = {
     },
 };
 
-export { getSeriesShort, initialEventOrder };
+const singleDriverObj = {
+    driverName: "",
+    driverNAT: "",
+    fiaCAT: "",
+    hometown: "",
+    email: "",
+    cell: "",
+};
+
+export { getSeriesShort, initialEventOrder, singleDriverObj };
