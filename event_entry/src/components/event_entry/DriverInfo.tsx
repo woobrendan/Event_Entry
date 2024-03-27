@@ -30,7 +30,7 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
         setDriverEntry((prev) => ({
             ...prev,
             [driverStr]: {
-                //...prev[driverStr],
+                ...prev[driverStr],
                 [e.target.name]: e.target.value,
             },
         }));
@@ -42,7 +42,7 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
         setDriverEntry((prev) => ({
             ...prev,
             [driverStr]: {
-                //...prev[driverStr],
+                ...prev[driverStr],
                 [e.target.name]: e.target.value,
             },
         }));
