@@ -21,7 +21,7 @@ export interface EventOrder {
     sponsors: string;
     vehicle: string;
     driver1: DriverInfoInterface;
-    driver2?: DriverInfoInterface;
+    [key: string]: string | DriverInfoInterface;
 }
 
 export interface DriverInfoInterface {
