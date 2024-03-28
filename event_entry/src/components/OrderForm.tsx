@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EventOrder } from "../models/props";
+import { DriverInfoInterface, EventOrder } from "../models/props";
 import { initialEventOrder } from "../functions/helpers";
 
 //** Components */
@@ -28,10 +28,10 @@ const OrderForm: React.FC = () => {
         e: React.ChangeEvent<T>,
         driver?: string,
     ) => {
-        setOrder((prev) => ({
+        setOrder((prev: EventOrder) => ({
             ...prev,
-            ...(driver === "driver1"
-                ? { driver1: { ...prev.driver1, [e.target.name]: e.target.value } }
+            ...(driver
+                ? { [driver]: { ...(prev[driver] as DriverInfoInterface), [e.target.name]: e.target.value } }
                 : { [e.target.name]: e.target.value }),
         }));
     };
