@@ -18,7 +18,6 @@ const TicketType: React.FC<Props> = ({ type = "", setTicketType, compNav }) => {
 
 	const handleClick = (val: string) => {
 		setSelected(val);
-		// handleBoxClick("type", val);
 		setTicketType(val);
 		compNav("next");
 	};

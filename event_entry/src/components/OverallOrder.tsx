@@ -7,7 +7,7 @@ import NewOrder from "./NewOrder";
 import TicketType from "./TicketType";
 
 import "../styles/orderForm.scss";
-import EventOrderForm from "./EventOrderForm";
+import EventOrderForm from "./event_entry/EventOrderForm";
 
 const OverallOrder: React.FC = () => {
 	const [overallOrder, setOverallOrder] = useState<Order>({});

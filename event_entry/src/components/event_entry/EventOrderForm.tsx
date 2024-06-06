@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { DriverInfoInterface, EventOrder } from "../models/props";
-import { initialEventOrder } from "../functions/helpers";
+import { DriverInfoInterface, EventOrder } from "../../models/props";
+import { initialEventOrder } from "../../functions/helpers";
 
 //** Components */
-import TicketType from "./TicketType";
-import NewOrder from "./NewOrder";
-import SeriesSelect from "./event_entry/SeriesSelect";
-import EventSelect from "./event_entry/EventSelect";
-import EntryInfo from "./event_entry/EntryInfo";
-import ClassSelect from "./event_entry/ClassSelect";
-import DriverInfo from "./event_entry/DriverInfo";
+import TicketType from "../TicketType";
+import NewOrder from "../NewOrder";
+import SeriesSelect from "./SeriesSelect";
+import EventSelect from "./EventSelect";
+import EntryInfo from "./EntryInfo";
+import ClassSelect from "./ClassSelect";
+import DriverInfo from "./DriverInfo";
 
 import "../styles/orderForm.scss";
 
@@ -51,8 +51,6 @@ const EventOrderForm: React.FC = () => {
 	};
 
 	const components = [
-		// <NewOrder compNav={compNav} />,
-		// <TicketType handleBoxClick={handleBoxClick} compNav={compNav} type={order.type} />,
 		<EventSelect
 			handleBoxClick={handleBoxClick}
 			compNav={compNav}
@@ -79,6 +77,7 @@ const EventOrderForm: React.FC = () => {
 			compNav={compNav}
 			eventOrder={order}
 		/>,
+		//add bronze test question
 	];
 
 	const CurrentComponent = components[currentComp];
