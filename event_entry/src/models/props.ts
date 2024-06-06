@@ -13,9 +13,10 @@ export interface ClickAndNav {
 	handleBoxClick: (name: string, val: string) => void;
 }
 
-interface BronzeTest {
-	isSelected: boolean;
-	driver1: DriverInfoInterface;
+export interface BronzeTest {
+	type: string;
+	isSelected?: boolean;
+	driver1?: DriverInfoInterface;
 	driver2?: DriverInfoInterface;
 }
 
@@ -46,8 +47,9 @@ export interface DriverObjInterface {
 }
 
 export interface Order {
-	eventOrder?: EventOrder;
-	bronzeTest?: BronzeTest;
+	[key: string]: EventOrder | BronzeTest;
+	// eventOrder?: EventOrder;
+	// bronzeTest?: BronzeTest;
 	//test day
 	//rental
 }
