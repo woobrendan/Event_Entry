@@ -7,7 +7,7 @@ import NewOrder from "./NewOrder";
 import TicketType from "./TicketType";
 
 import "../styles/orderForm.scss";
-import OrderForm from "./OrderForm";
+import EventOrderForm from "./EventOrderForm";
 
 const OverallOrder: React.FC = () => {
 	const [overallOrder, setOverallOrder] = useState<Order>({});
@@ -29,14 +29,15 @@ const OverallOrder: React.FC = () => {
 				[currentTix]: initialEventOrder as EventOrder,
 			}));
 
-			const newCompList = [...components, <OrderForm />];
+			const newCompList = [...components, <EventOrderForm />];
 
 			setComponents(newCompList);
+		} else if (name === "bronzeTest") {
+			setOverallOrder((prev) => ({
+				...prev,
+				[currentTix]: initialBronze as BronzeTest,
+			}));
 		}
-
-		// } else if (name === "bronzeTest") {
-		// 	initial = initialBronze as BronzeTest;
-		// }
 	};
 
 	const thisTicket = Object.keys(overallOrder)[0];
