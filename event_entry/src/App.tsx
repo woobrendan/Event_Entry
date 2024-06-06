@@ -1,4 +1,3 @@
-import OrderForm from "./components/OrderForm";
 import OverallOrder from "./components/OverallOrder";
 import "./styles/app.scss";
 
