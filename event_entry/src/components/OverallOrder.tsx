@@ -1,42 +1,59 @@
 import { useState } from "react";
-import { Order } from "../models/props";
+import { Order, EventOrder, BronzeTest } from "../models/props";
+
+import { initialBronze, initialEventOrder } from "../functions/initalStates";
+
 import NewOrder from "./NewOrder";
 import TicketType from "./TicketType";
+
+import "../styles/orderForm.scss";
+import OrderForm from "./OrderForm";
 
 const OverallOrder: React.FC = () => {
 	const [overallOrder, setOverallOrder] = useState<Order>({});
 	const [currentComp, setCurrentComp] = useState(0);
-	const [currentTicket, setCurrentTicket] = useState(0);
+	const [currentTicket, setCurrentTicket] = useState(1);
 
 	const compNav = (val: string): void => {
 		setCurrentComp((prev) => (val === "next" ? prev + 1 : prev - 1));
 	};
 
-	// const handleBoxClick = (name: string, val: string) => {
-	//     setOrder((prev) => ({
-	//         ...prev,
-	//         [name]: val,
-	//     }));
-	// };
-
+	// Handle Logic for setting ticket type. set as ticket x in overall order, then set intial state
 	const setTicketType = (name: string) => {
-		setOverallOrder((prev) => ({
-			...prev,
-			[name]: {},
-		}));
+		const currentTix = `ticket${currentTicket}`;
+		let initial: EventOrder | BronzeTest;
+
+		if (name === "eventOrder") {
+			setOverallOrder((prev) => ({
+				...prev,
+				[currentTix]: initialEventOrder as EventOrder,
+			}));
+
+			const newCompList = [...components, <OrderForm />];
+
+			setComponents(newCompList);
+		}
+
+		// } else if (name === "bronzeTest") {
+		// 	initial = initialBronze as BronzeTest;
+		// }
 	};
 
 	const thisTicket = Object.keys(overallOrder)[0];
 
-	const components = [
+	const [components, setComponents] = useState([
 		<NewOrder compNav={compNav} />,
 		<TicketType
 			setTicketType={setTicketType}
 			compNav={compNav}
 			type={thisTicket}
 		/>,
-	];
-	return <></>;
+	]);
+
+	const currentComponent = components[currentComp];
+	return (
+		<section className="order_form_container">{currentComponent}</section>
+	);
 };
 
 export default OverallOrder;
