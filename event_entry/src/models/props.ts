@@ -29,8 +29,7 @@ export interface EventOrder {
 	sponsors: string;
 	vehicle: string;
 	driver1: DriverInfoInterface;
-	bronzeTest: BronzeTest;
-	[key: string]: string | DriverInfoInterface | BronzeTest;
+	[key: string]: string | DriverInfoInterface;
 }
 
 export interface DriverInfoInterface {
@@ -44,4 +43,11 @@ export interface DriverInfoInterface {
 
 export interface DriverObjInterface {
 	[key: string]: DriverInfoInterface;
+}
+
+export interface Order {
+	eventOrder?: EventOrder;
+	bronzeTest?: BronzeTest;
+	//test day
+	//rental
 }
