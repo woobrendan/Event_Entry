@@ -1,152 +1,153 @@
 .order_form_container {
-    height: 80vh;
-    width: 60vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	height: 80vh;
+	width: 60vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-    .MuiButton-root {
-        max-width: 100px;
-        min-width: 75px;
-    }
+	.MuiButton-root {
+		max-width: 100px;
+		min-width: 75px;
+	}
 
-    //** For Comp Nav component */
-    .comp_nav_buttons {
-        display: flex;
-        gap: 50px;
-        margin-top: 5%;
-    }
+	//** For Comp Nav component */
+	.comp_nav_buttons {
+		display: flex;
+		gap: 50px;
+		margin-top: 5%;
+	}
 
-    //** Ticket Type components */
-    .click_component {
-        height: 100%;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
+	//** Ticket Type components */
+	.click_component {
+		height: 100%;
+		width: 100%;
+		align-items: center;
+		justify-content: center;
+		display: flex;
+		flex-direction: column;
 
-        .click_box {
-            display: flex;
-            flex-direction: column;
-            gap: 8%;
-            height: 100%;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 2vw;
+		.click_box {
+			display: flex;
+			flex-direction: column;
+			gap: 8%;
+			height: 100%;
+			width: 100%;
+			justify-content: center;
+			align-items: center;
+			font-weight: bold;
+			font-size: 2vw;
 
-            //for event select, make gap smaller
-            &__event {
-                gap: 3%
-            }
-            
-            &__div {
-                width: 70%;
-                background-color: #db2525;
-                color: #fff;
-                text-align: center;
-                line-height: 250%;
-                cursor: pointer;
-                border-radius: 6px;
+			//for event select, make gap smaller
+			&__event {
+				gap: 3%;
+			}
 
-                &.selected {
-                    background-color: #000000;
-                    color: #db2525;
-                    border: 1px solid red;
-                }
-            }
+			&__div {
+				width: 70%;
+				background-color: #db2525;
+				color: #fff;
+				text-align: center;
+				line-height: 250%;
+				cursor: pointer;
+				border-radius: 6px;
 
-            &__event .click_box__div,
-            &__div.event {
-                line-height: 150%;
-            }
-        }
-    }
+				&.selected {
+					background-color: #000000;
+					color: #db2525;
+					border: 1px solid red;
+				}
+			}
 
-    //** For Event, Series component*/
-    .select {
-        display: flex;
-        flex-direction: column;
-        height: 80%;
-        width: 100%;
+			&__eventOrder .click_box__div,
+			&__div.eventOrder {
+				line-height: 150%;
+			}
+		}
+	}
 
-        &__radios {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5%;
-            font-size: large;
-            font-weight: bold;
-            height: 70%;
+	//** For Event, Series component*/
+	.select {
+		display: flex;
+		flex-direction: column;
+		height: 80%;
+		width: 100%;
 
-            input[type="radio"] {
-                margin-right: 5%; 
-              }
-        }
-    }
+		&__radios {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 5%;
+			font-size: large;
+			font-weight: bold;
+			height: 70%;
 
-    // Team and Number Component ////
-    .input {
-        flex-direction: column;
-        display: flex;
-        height: 80%;
-        width: 80%;
-        justify-content: center;
-        align-items: center;
-        gap: 5%;
+			input[type="radio"] {
+				margin-right: 5%;
+			}
+		}
+	}
 
-        .sponsors {
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            font-size: larger;
-            font-weight: bold;
-            flex-direction: column;
-            height: 100px;
+	// Team and Number Component ////
+	.input {
+		flex-direction: column;
+		display: flex;
+		height: 80%;
+		width: 80%;
+		justify-content: center;
+		align-items: center;
+		gap: 5%;
 
-            textarea {
-                height: 60%;
-                overflow: auto;
-                resize: both;
-            }
-        }
-        
-        .input__team, .input__driver {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: larger;
-            font-weight: bold;
+		.sponsors {
+			width: 100%;
+			display: flex;
+			justify-content: space-around;
+			font-size: larger;
+			font-weight: bold;
+			flex-direction: column;
+			height: 100px;
 
-            select, input {
-                width: 60%;
-                height: 50px;
-                font-size: large;
-            }
+			textarea {
+				height: 60%;
+				overflow: auto;
+				resize: both;
+			}
+		}
 
-            &__number {
-                width: 20% !important;
-                height: 50px;
-                font-size: larger;
-            }
-        }
-    }
+		.input__team,
+		.input__driver {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: larger;
+			font-weight: bold;
 
-    .input {
-        /* Chrome, Safari, Edge, Opera */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+			select,
+			input {
+				width: 60%;
+				height: 50px;
+				font-size: large;
+			}
 
-        /* Firefox */
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
-    }
+			&__number {
+				width: 20% !important;
+				height: 50px;
+				font-size: larger;
+			}
+		}
+	}
 
+	.input {
+		/* Chrome, Safari, Edge, Opera */
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		/* Firefox */
+		input[type="number"] {
+			-moz-appearance: textfield;
+		}
+	}
 }
