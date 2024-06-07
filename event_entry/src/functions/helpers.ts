@@ -27,9 +27,6 @@ const initialEventOrder = {
 		email: "",
 		cell: "",
 	},
-	bronzeTest: {
-		isSelected: false,
-	},
 };
 
 const singleDriverObj = {
