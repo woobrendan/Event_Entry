@@ -15,7 +15,12 @@ const OverallOrder: React.FC = () => {
 	const [currentTicket, setCurrentTicket] = useState(1);
 
 	const compNav = (val: string): void => {
-		setCurrentComp((prev) => (val === "next" ? prev + 1 : prev - 1));
+		if (val === "next" || val === "back") {
+			setCurrentComp((prev) => (val === "next" ? prev + 1 : prev - 1));
+		}
+		if (val === "restart") {
+			setCurrentComp(1);
+		}
 	};
 
 	// Handle Logic for setting ticket type. set as ticket x in overall order, then set intial state
@@ -29,7 +34,10 @@ const OverallOrder: React.FC = () => {
 				[currentTix]: initialEventOrder as EventOrder,
 			}));
 
-			const newCompList = [...components, <EventOrderForm />];
+			const newCompList = [
+				...components,
+				<EventOrderForm compNav={compNav} />,
+			];
 
 			setComponents(newCompList);
 		} else if (name === "bronzeTest") {
