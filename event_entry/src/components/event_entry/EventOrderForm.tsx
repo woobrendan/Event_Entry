@@ -3,26 +3,28 @@ import { DriverInfoInterface, EventOrder } from "../../models/props";
 import { initialEventOrder } from "../../functions/helpers";
 
 //** Components */
-import TicketType from "../TicketType";
-import NewOrder from "../NewOrder";
 import SeriesSelect from "./SeriesSelect";
 import EventSelect from "./EventSelect";
 import EntryInfo from "./EntryInfo";
 import ClassSelect from "./ClassSelect";
 import DriverInfo from "./DriverInfo";
 
-import "../styles/orderForm.scss";
+import "../../styles/orderForm.scss";
 
-const EventOrderForm: React.FC = () => {
+interface Props {
+	compNav: (val: string) => void;
+}
+
+const EventOrderForm: React.FC<Props> = ({ compNav }) => {
 	// each order will indicate type, at end add to redux cart
 	// when ticket type set, set state keys (event class etc)
 	const [order, setOrder] = useState<EventOrder>(initialEventOrder);
 
-	const [currentComp, setCurrentComp] = useState(0);
+	const [eventComp, setEventComp] = useState(0);
 
-	const compNav = (val: string): void => {
-		setCurrentComp((prev) => (val === "next" ? prev + 1 : prev - 1));
-	};
+	// const compNav = (val: string): void => {
+	// 	setCurrentComp((prev) => (val === "next" ? prev + 1 : prev - 1));
+	// };
 
 	const handleFormElement = <
 		T extends HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -80,11 +82,9 @@ const EventOrderForm: React.FC = () => {
 		//add bronze test question
 	];
 
-	const CurrentComponent = components[currentComp];
+	const eventComponent = components[eventComp];
 
-	return (
-		<section className="order_form_container">{CurrentComponent}</section>
-	);
+	return <section className="order_form_container">{eventComponent}</section>;
 };
 
 export default EventOrderForm;
