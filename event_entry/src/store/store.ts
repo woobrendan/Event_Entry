@@ -1,8 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
+import currentTicketSlice from "./currentTicketSlice";
+import ticketListSlice from "./ticketListSlice";
 
 export const createStore = () =>
 	configureStore({
-		reducer: {},
+		reducer: {
+			currentTicket: currentTicketSlice.reducer,
+			ticketList: ticketListSlice.reducer,
+		},
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware({
 				serializableCheck: false,
