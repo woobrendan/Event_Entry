@@ -5,12 +5,12 @@ const initialState: Ticket = {
 	ticketNum: 1,
 	type: "",
 };
-const currentTicket = createSlice({
+const currentTicketSlice = createSlice({
 	name: "currentTicket",
 	initialState,
 	reducers: {},
 });
 
-export const currentTicketActions = currentTicket.actions;
+export const currentTicketActions = currentTicketSlice.actions;
 
-export default currentTicket;
+export default currentTicketSlice;
