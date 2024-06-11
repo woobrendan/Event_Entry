@@ -5,4 +5,6 @@ export interface BaseTicket {
 	type: "EventOrder" | "BronzeTest" | ""; // add union of rental and test day
 }
 
-export type Ticket = (BaseTicket & EventOrder) | (BaseTicket & BronzeTest);
+export type Ticket =
+	| (BaseTicket & Partial<EventOrder>)
+	| (BaseTicket & Partial<BronzeTest>);
