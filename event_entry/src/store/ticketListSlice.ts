@@ -10,7 +10,15 @@ const initialState: TicketList = { ticketList: [] };
 const ticketListSlice = createSlice({
 	name: "ticketList",
 	initialState,
-	reducers: {},
+	reducers: {
+		addTicket(state, action: PayloadAction<Ticket>) {
+			state.ticketList = [...state.ticketList, action.payload];
+		},
+		removeTicket(state, action: PayloadAction<any>) {
+			const prevState = [...state.ticketList];
+			//fitler out by ticket number
+		},
+	},
 });
 
 export const ticketListActions = ticketListSlice.actions;
