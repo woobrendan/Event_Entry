@@ -12,18 +12,15 @@ const currentTicketSlice = createSlice({
 	name: "currentTicket",
 	initialState,
 	reducers: {
-		setTicketType(
-			state: Ticket,
-			action: PayloadAction<"EventOrder" | "BronzeTest">
-		) {
+		setTicketType(state: Ticket, action: PayloadAction<string>) {
 			const { payload: type } = action;
 
-			if (type === "EventOrder") {
+			if (type === "eventOrder") {
 				return {
 					...state,
 					...initialEventOrder,
 				} as BaseTicket & Partial<EventOrder>;
-			} else if (type === "BronzeTest") {
+			} else if (type === "bronzeTest") {
 				return {
 					...state,
 					...initialBronzeTest,
