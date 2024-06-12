@@ -1,30 +1,25 @@
-import { useState } from "react";
-import { ClickAndNav } from "../models/props";
 import { useAppDispatch } from "../store/hooks";
 import { currentTicketActions } from "../store/currentTicketSlice";
+import { useNavigate } from "react-router-dom";
 
-interface Props {
-	compNav: (val: string) => void;
-	setTicketType: (val: string) => void;
-	type: string;
-}
-
-const TicketType: React.FC<Props> = ({ type = "", setTicketType, compNav }) => {
-	const [selected, setSelected] = useState(type);
-
+const TicketType: React.FC = () => {
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
 	const ticketTypes = [
-		{ value: "eventOrder", label: "Event Entry" },
-		{ value: "rental", label: "Lumirank Rental" },
-		{ value: "bronzeTest", label: "Bronze Test Session" },
+		{ value: "eventOrder", label: "Event Entry", url: "/eventOrder" },
+		{ value: "rental", label: "Lumirank Rental", url: "/rentals" },
+		{
+			value: "bronzeTest",
+			label: "Bronze Test Session",
+			url: "/bronzeTest",
+		},
+		{ value: "testDay", label: "Test Day Entry", url: "/testDay" },
 	];
 
-	const handleClick = (val: string) => {
-		setSelected(val);
-		// setTicketType(val);
-		dispatch(currentTicketActions.setTicketType(val));
-		compNav("next");
+	const handleClick = (val: { [key: string]: string }) => {
+		dispatch(currentTicketActions.setTicketType(val.value));
+		navigate(val.url);
 	};
 
 	return (
@@ -33,10 +28,8 @@ const TicketType: React.FC<Props> = ({ type = "", setTicketType, compNav }) => {
 				{ticketTypes.map((ticket, index) => {
 					return (
 						<div
-							className={`ticket click_box__div ${
-								selected === ticket.value ? "selected" : ""
-							}`}
-							onClick={() => handleClick(ticket.value)}
+							className={`ticket click_box__div`}
+							onClick={() => handleClick(ticket)}
 							key={index}
 						>
 							{ticket.label}
