@@ -2,7 +2,8 @@ import { EventOrder, BronzeTest } from "../models/props";
 
 export interface BaseTicket {
 	ticketNum: number;
-	type: "EventOrder" | "BronzeTest" | ""; // add union of rental and test day
+	// type: "eventOrder" | "bronzeTest" | ""; // add union of rental and test day
+	type: string;
 }
 
 export type Ticket =
