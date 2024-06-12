@@ -1,12 +1,11 @@
 // import { EventOrder, BronzeTest } from "../models/props";
 
 export interface BaseTicket {
-	ticketNum: number;
-	// type: "eventOrder" | "bronzeTest" | ""; // add union of rental and test day
+	ticketNum: string;
 	type: string;
 }
 
-interface DriverInfoInterface {
+export interface DriverInfoInterface {
 	driverName: string;
 	driverNAT: string;
 	fiaCAT: string;
@@ -42,5 +41,5 @@ interface BronzeTest extends BaseTicket {
 export type Ticket = BaseTicket & (Partial<EventOrder> | Partial<BronzeTest>);
 
 export const isEventOrder = (ticket: Ticket): ticket is EventOrder => {
-	return (ticket as EventOrder).event !== undefined;
+	return (ticket as EventOrder).type === "eventOrder";
 };
