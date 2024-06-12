@@ -9,7 +9,7 @@ const App: React.FC = () => {
 			<div className="App">
 				<Routes>
 					<Route path="/" element={<OverallOrder />} />
-					{/* <Route path="/eventOrder" element={<EventOrderForm />} /> */}
+					<Route path="/eventOrder" element={<EventOrderForm />} />
 				</Routes>
 			</div>
 		</Router>
