@@ -41,5 +41,5 @@ interface BronzeTest extends BaseTicket {
 export type Ticket = BaseTicket & (Partial<EventOrder> | Partial<BronzeTest>);
 
 export const isEventOrder = (ticket: Ticket): ticket is EventOrder => {
-	return (ticket as EventOrder).type === "eventOrder";
+	return (ticket as EventOrder).type === "EventOrder";
 };
