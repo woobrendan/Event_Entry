@@ -105,6 +105,13 @@
 			width: 60%;
 		}
 
+		.driver_info_container {
+			display: flex;
+			gap: 10%;
+			width: 100%;
+			justify-content: space-around;
+		}
+
 		.sponsors {
 			width: 100%;
 			display: flex;
