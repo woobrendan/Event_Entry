@@ -3,42 +3,43 @@ import BackNextButtons from "../BackNextButtons";
 import { ClickAndNav } from "../../models/props";
 
 interface Props extends ClickAndNav {
-    series: string;
+	series: string;
 }
 
 const SeriesSelect: React.FC<Props> = ({ compNav, handleBoxClick, series }) => {
-    const [selected, setSelected] = useState(series ? series : "");
+	const [selected, setSelected] = useState(series ? series : "");
 
-    const seriesList = [
-        "Fanatec GT World Challenge America",
-        "Pirelli GT4 America",
-        "GT America",
-        "TC America",
-        "Toyota GR Cup",
-    ];
+	const seriesList = [
+		"Fanatec GT World Challenge America",
+		"Pirelli GT4 America",
+		"GT America",
+		"TC America",
+		"Toyota GR Cup",
+	];
 
-    const handleClick = (val: string) => {
-        setSelected(val);
-        handleBoxClick("series", val);
-    };
+	const handleClick = (val: string) => {
+		setSelected(val);
+		handleBoxClick("series", val);
+	};
 
-    const boxSeries = seriesList.map((val, index) => {
-        return (
-            <div
-                className={`series click_box__div ${selected === val ? "selected" : ""}`}
-                onClick={() => handleClick(val)}
-                key={index}
-            >
-                {val}
-            </div>
-        );
-    });
-    return (
-        <section className="series_container click_component">
-            <div className="click_box">{boxSeries}</div>
-            <BackNextButtons compNav={compNav} isValid={selected ? true : false} />
-        </section>
-    );
+	return (
+		<section className="series_container click_component">
+			<div className="click_box">
+				{seriesList.map((val, index) => {
+					return (
+						<div
+							className={`series click_box__div ${selected === val ? "selected" : ""}`}
+							onClick={() => handleClick(val)}
+							key={index}
+						>
+							{val}
+						</div>
+					);
+				})}
+			</div>
+			<BackNextButtons compNav={compNav} isValid={selected ? true : false} />
+		</section>
+	);
 };
 
 export default SeriesSelect;
