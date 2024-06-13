@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { EventOrder, Ticket, isEventOrder } from "../../store/types";
+import { Ticket, isEventOrder } from "../../store/types";
+import { currentTicketActions } from "../../store/currentTicketSlice";
 
 //** Components */
 import SeriesSelect from "./SeriesSelect";
@@ -10,9 +11,8 @@ import ClassSelect from "./ClassSelect";
 import DriverInfo from "./DriverInfo";
 
 import "../../styles/orderForm.scss";
-import { currentTicketActions } from "../../store/currentTicketSlice";
 
-const EventOrderForm: React.FC = ({}) => {
+const EventOrderForm: React.FC = () => {
 	const [eventComp, setEventComp] = useState(0);
 	const dispatch = useAppDispatch();
 
@@ -35,18 +35,18 @@ const EventOrderForm: React.FC = ({}) => {
 	let components: any = [];
 
 	if (isEventOrder(currentTicket)) {
+		const { event, series } = currentTicket;
 		components = [
-			<EventSelect handleBoxClick={handleBoxClick} compNav={compNav} event={currentTicket.event} />,
-			<SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} series={currentTicket.series} />,
+			<EventSelect handleBoxClick={handleBoxClick} compNav={compNav} event={event} />,
+			<SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} series={series} />,
 			<ClassSelect
 				handleBoxClick={handleBoxClick}
 				compNav={compNav}
-				series={currentTicket.series}
+				series={series}
 				classif={currentTicket.class}
 			/>,
 			<EntryInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={currentTicket} />,
 			<DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={currentTicket} />,
-			//add bronze test question
 		];
 	}
 
