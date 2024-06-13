@@ -1,6 +1,6 @@
 .order_form_container {
 	height: 80vh;
-	width: 60vw;
+	width: 80vw;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -56,6 +56,10 @@
 					color: #db2525;
 					border: 1px solid red;
 				}
+
+				&.classif {
+					width: 40%;
+				}
 			}
 
 			&__event .click_box__div,
@@ -96,6 +100,10 @@
 		justify-content: center;
 		align-items: center;
 		gap: 5%;
+
+		&.team_info {
+			width: 60%;
+		}
 
 		.sponsors {
 			width: 100%;
