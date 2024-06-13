@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { DriverInfoInterface, EventOrder } from "../../models/props";
-import { initialEventOrder } from "../../functions/helpers";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { EventOrder, Ticket, isEventOrder } from "../../store/types";
 
 //** Components */
 import SeriesSelect from "./SeriesSelect";
@@ -10,77 +10,45 @@ import ClassSelect from "./ClassSelect";
 import DriverInfo from "./DriverInfo";
 
 import "../../styles/orderForm.scss";
+import { currentTicketActions } from "../../store/currentTicketSlice";
 
-interface Props {
-	compNav: (val: string) => void;
-}
-
-const EventOrderForm: React.FC<Props> = ({ compNav }) => {
-	// each order will indicate type, at end add to redux cart
-	// when ticket type set, set state keys (event class etc)
-	const [order, setOrder] = useState<EventOrder>(initialEventOrder);
-
+const EventOrderForm: React.FC = ({}) => {
 	const [eventComp, setEventComp] = useState(0);
+	const dispatch = useAppDispatch();
 
-	// const compNav = (val: string): void => {
-	// 	setCurrentComp((prev) => (val === "next" ? prev + 1 : prev - 1));
-	// };
+	const currentTicket = useAppSelector((state) => state.currentTicket) as Ticket;
 
-	const handleFormElement = <
-		T extends HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-	>(
+	const compNav = (val: string): void => {
+		setEventComp((prev) => (val === "next" ? prev + 1 : prev - 1));
+	};
+
+	const handleFormElement = <T extends HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
 		e: React.ChangeEvent<T>,
 		driver?: string
 	) => {
-		setOrder((prev: EventOrder) => ({
-			...prev,
-			...(driver
-				? {
-						[driver]: {
-							...(prev[driver] as DriverInfoInterface),
-							[e.target.name]: e.target.value,
-						},
-				  }
-				: { [e.target.name]: e.target.value }),
-		}));
+		dispatch(currentTicketActions.handleEventForm({ driver, name: e.target.name, value: e.target.value }));
 	};
 
-	const handleBoxClick = (name: string, val: string) => {
-		setOrder((prev) => ({
-			...prev,
-			[name]: val,
-		}));
+	const handleBoxClick = (name: string, value: string) => {
+		dispatch(currentTicketActions.setEventKeyValue({ name, value }));
 	};
+	let components: any = [];
 
-	const components = [
-		<EventSelect
-			handleBoxClick={handleBoxClick}
-			compNav={compNav}
-			event={order.event}
-		/>,
-		<SeriesSelect
-			handleBoxClick={handleBoxClick}
-			compNav={compNav}
-			series={order.series}
-		/>,
-		<ClassSelect
-			handleBoxClick={handleBoxClick}
-			compNav={compNav}
-			series={order.series}
-			classif={order.class}
-		/>,
-		<EntryInfo
-			handleFormElement={handleFormElement}
-			compNav={compNav}
-			eventOrder={order}
-		/>,
-		<DriverInfo
-			handleFormElement={handleFormElement}
-			compNav={compNav}
-			eventOrder={order}
-		/>,
-		//add bronze test question
-	];
+	if (isEventOrder(currentTicket)) {
+		components = [
+			<EventSelect handleBoxClick={handleBoxClick} compNav={compNav} event={currentTicket.event} />,
+			<SeriesSelect handleBoxClick={handleBoxClick} compNav={compNav} series={currentTicket.series} />,
+			<ClassSelect
+				handleBoxClick={handleBoxClick}
+				compNav={compNav}
+				series={currentTicket.series}
+				classif={currentTicket.class}
+			/>,
+			<EntryInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={currentTicket} />,
+			<DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={currentTicket} />,
+			//add bronze test question
+		];
+	}
 
 	const eventComponent = components[eventComp];
 
