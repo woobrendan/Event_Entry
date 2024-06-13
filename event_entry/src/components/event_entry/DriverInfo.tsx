@@ -1,9 +1,5 @@
-import {
-	SetAndNav,
-	DriverObjInterface,
-	DriverInfoInterface,
-	EventOrder,
-} from "../../models/props";
+import { SetAndNav, DriverObjInterface } from "../../models/props";
+import { EventOrder } from "../../store/types";
 import { useState, useEffect } from "react";
 import drivers from "../../seeds/drivers";
 import countryCodes from "../../seeds/countryCodes";
@@ -15,17 +11,11 @@ interface Props extends SetAndNav {
 	eventOrder: EventOrder;
 }
 
-const DriverInfo: React.FC<Props> = ({
-	compNav,
-	handleFormElement,
-	eventOrder,
-}) => {
+const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) => {
 	const shortSeries = getSeriesShort(eventOrder.series);
 	//const { driverName = "", driverNAT = "", fiaCAT = "", hometown = "", email = "", cell = "" } = eventOrder.driver1;
 
-	const [isDualDriver, setIsDualDriver] = useState(
-		shortSeries === "gtwc" || shortSeries === "gt4a"
-	);
+	const [isDualDriver, setIsDualDriver] = useState(shortSeries === "gtwc" || shortSeries === "gt4a");
 
 	const [driverEntry, setDriverEntry] = useState<DriverObjInterface>({
 		driver1: { ...singleDriverObj },
@@ -36,10 +26,7 @@ const DriverInfo: React.FC<Props> = ({
 		setIsDualDriver(shortSeries === "gtwc" || shortSeries === "gt4a");
 	}, [eventOrder.series]);
 
-	const handleSelect = (
-		e: React.ChangeEvent<HTMLSelectElement>,
-		driverNum: string
-	) => {
+	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>, driverNum: string) => {
 		const driverStr = `driver${driverNum}`;
 		setDriverEntry((prev) => ({
 			...prev,
@@ -51,10 +38,7 @@ const DriverInfo: React.FC<Props> = ({
 		handleFormElement(e, driverStr);
 	};
 
-	const handleInput = (
-		e: React.ChangeEvent<HTMLInputElement>,
-		driverNum: string
-	) => {
+	const handleInput = (e: React.ChangeEvent<HTMLInputElement>, driverNum: string) => {
 		const driverStr = `driver${driverNum}`;
 		setDriverEntry((prev) => ({
 			...prev,
@@ -67,11 +51,9 @@ const DriverInfo: React.FC<Props> = ({
 	};
 
 	const singleDriverInfo = (driverNum: string) => {
-		const driver =
-			driverEntry[`driver${driverNum}` as keyof typeof driverEntry];
+		const driver = driverEntry[`driver${driverNum}` as keyof typeof driverEntry];
 		if (driver) {
-			const { driverName, driverNAT, fiaCAT, hometown, cell, email } =
-				driver;
+			const { driverName, driverNAT, fiaCAT, hometown, cell, email } = driver;
 			return (
 				<div className="driver_info__driver">
 					<DriverSelectElement
@@ -106,9 +88,7 @@ const DriverInfo: React.FC<Props> = ({
 						<input
 							value={hometown}
 							name="hometown"
-							onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-								handleInput(e, driverNum)
-							}
+							onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
 						/>
 					</div>
 					<div className="input__team">
@@ -117,9 +97,7 @@ const DriverInfo: React.FC<Props> = ({
 							type="email"
 							value={email}
 							name="email"
-							onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-								handleInput(e, driverNum)
-							}
+							onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
 						/>
 					</div>
 					<div className="input__team">
@@ -128,9 +106,7 @@ const DriverInfo: React.FC<Props> = ({
 							type="tel"
 							value={cell}
 							name="cell"
-							onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-								handleInput(e, driverNum)
-							}
+							onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
 						/>
 					</div>
 				</div>
