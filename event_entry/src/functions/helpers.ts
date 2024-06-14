@@ -10,6 +10,12 @@ const getSeriesShort = (series: string): string => {
 	return seriesList[series];
 };
 
+const isDualDriverSeries = (series: string): boolean => {
+	const shortSeries = getSeriesShort(series);
+	if (shortSeries === "gtwc" || shortSeries === "gt4a") return true;
+	else return false;
+};
+
 const initialEventOrder = {
 	type: "",
 	event: "",
@@ -38,4 +44,4 @@ const singleDriverObj = {
 	cell: "",
 };
 
-export { getSeriesShort, initialEventOrder, singleDriverObj };
+export { getSeriesShort, initialEventOrder, singleDriverObj, isDualDriverSeries };
