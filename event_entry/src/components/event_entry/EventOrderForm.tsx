@@ -14,6 +14,10 @@ import "../../styles/orderForm.scss";
 
 const EventOrderForm: React.FC = () => {
 	const [eventComp, setEventComp] = useState(0);
+	const [bronze, setBronze] = useState({
+		driver1: null,
+		driver2: null,
+	});
 	const dispatch = useAppDispatch();
 
 	const currentTicket = useAppSelector((state) => state.currentTicket) as Ticket;
