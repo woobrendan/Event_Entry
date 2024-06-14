@@ -1,4 +1,4 @@
-import { EventOrder, BronzeTest } from "../models/props";
+import { EventOrder, BronzeTest } from "./types";
 
 export const initialEventOrder: Partial<EventOrder> = {
 	type: "EventOrder",
@@ -16,6 +16,16 @@ export const initialEventOrder: Partial<EventOrder> = {
 		hometown: "",
 		email: "",
 		cell: "",
+		isValid: true,
+	},
+	driver2: {
+		driverName: "",
+		driverNAT: "",
+		fiaCAT: "",
+		hometown: "",
+		email: "",
+		cell: "",
+		isValid: false,
 	},
 };
 
@@ -29,5 +39,15 @@ export const initialBronzeTest: Partial<BronzeTest> = {
 		hometown: "",
 		email: "",
 		cell: "",
+		isValid: true,
+	},
+	driver2: {
+		driverName: "",
+		driverNAT: "",
+		fiaCAT: "",
+		hometown: "",
+		email: "",
+		cell: "",
+		isValid: false,
 	},
 };
