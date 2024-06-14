@@ -12,6 +12,7 @@ export interface DriverInfoInterface {
 	hometown: string;
 	email: string;
 	cell: string;
+	isValid: boolean;
 }
 
 export interface EventOrder extends BaseTicket {
@@ -24,10 +25,10 @@ export interface EventOrder extends BaseTicket {
 	sponsors: string;
 	vehicle: string;
 	driver1: DriverInfoInterface;
-	driver2?: DriverInfoInterface;
+	driver2: DriverInfoInterface;
 }
 
-interface BronzeTest extends BaseTicket {
+export interface BronzeTest extends BaseTicket {
 	type: string;
 	isSelected?: boolean;
 	driver1?: DriverInfoInterface;
