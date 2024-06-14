@@ -35,9 +35,9 @@ export interface BronzeTest extends BaseTicket {
 	driver2?: DriverInfoInterface;
 }
 
-// export type Ticket =
-// 	| (BaseTicket & Partial<EventOrder>)
-// 	| (BaseTicket & Partial<BronzeTest>);
+export interface DriverObjInterface {
+	[key: string]: DriverInfoInterface;
+}
 
 export type Ticket = BaseTicket & (Partial<EventOrder> | Partial<BronzeTest>);
 
