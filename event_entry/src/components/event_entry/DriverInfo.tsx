@@ -6,6 +6,7 @@ import countryCodes from "../../seeds/countryCodes";
 import BackNextButtons from "../BackNextButtons";
 import DriverSelectElement from "./DriverSelectElement";
 import { getSeriesShort, singleDriverObj } from "../../functions/helpers";
+import SingleDriverInfo from "./SingleDriverInfo";
 
 interface Props extends SetAndNav {
 	eventOrder: EventOrder;
@@ -13,18 +14,19 @@ interface Props extends SetAndNav {
 
 const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) => {
 	const shortSeries = getSeriesShort(eventOrder.series);
-	//const { driverName = "", driverNAT = "", fiaCAT = "", hometown = "", email = "", cell = "" } = eventOrder.driver1;
+	const bronzeEligible = shortSeries === "gtwc" || shortSeries === "gt4a" || shortSeries === "gtam";
 
+	// Sets whether to render one or two driver components
 	const [isDualDriver, setIsDualDriver] = useState(shortSeries === "gtwc" || shortSeries === "gt4a");
-
-	const [driverEntry, setDriverEntry] = useState<DriverObjInterface>({
-		driver1: { ...singleDriverObj },
-		...(isDualDriver ? { driver2: { ...singleDriverObj } } : {}),
-	});
 
 	useEffect(() => {
 		setIsDualDriver(shortSeries === "gtwc" || shortSeries === "gt4a");
 	}, [eventOrder.series]);
+
+	const [driverEntry, setDriverEntry] = useState<DriverObjInterface>({
+		driver1: { ...eventOrder.driver1 },
+		...(eventOrder.driver2 ? { driver2: { ...eventOrder.driver2 } } : {}),
+	});
 
 	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>, driverNum: string) => {
 		const driverStr = `driver${driverNum}`;
@@ -49,6 +51,13 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
 		}));
 		handleFormElement(e, driverStr);
 	};
+
+	// const handleCheck = (e: React.ChangeEvent<HTMLInputElement>, driver: string) => {
+	//     setBronzeTest((prev) => ({
+	//         ...prev,
+	//         [driver]:
+	//     }))
+	// }
 
 	const singleDriverInfo = (driverNum: string) => {
 		const driver = driverEntry[`driver${driverNum}` as keyof typeof driverEntry];
@@ -109,6 +118,13 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
 							onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
 						/>
 					</div>
+					{/* <div>
+						<input
+							type="checkbox"
+							onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCheck(e, driverNum)}
+							checked={isChecked[`check${driverNum}` as keyof isChecked]}
+						/>
+					</div> */}
 				</div>
 			);
 		}
@@ -117,8 +133,21 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
 	return (
 		<section className="driver_info input">
 			<div className="driver_info_container">
-				{singleDriverInfo("1")}
-				{isDualDriver && <>{singleDriverInfo("2")}</>}
+				{/* {singleDriverInfo("1")} */}
+				<SingleDriverInfo
+					driverNum="1"
+					driverEntry={driverEntry}
+					handleSelect={handleSelect}
+					handleInput={handleInput}
+				/>
+				{isDualDriver && (
+					<SingleDriverInfo
+						driverNum="2"
+						driverEntry={driverEntry}
+						handleSelect={handleSelect}
+						handleInput={handleInput}
+					/>
+				)}
 			</div>
 			<BackNextButtons compNav={compNav} isValid={true} />
 		</section>
