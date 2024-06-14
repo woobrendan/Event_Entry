@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Ticket } from "./types";
 import { initialEventOrder, initialBronzeTest } from "./initialStates";
 import { BaseTicket, isEventOrder, EventOrder, DriverInfoInterface } from "./types";
-// import { BronzeTest, EventOrder } from "../models/props";
+import { isDualDriverSeries } from "../functions/helpers";
 
 interface ClickValues {
 	[key: string]: string;
@@ -35,11 +35,15 @@ const currentTicketSlice = createSlice({
 			const { name, value }: ClickValues = action.payload;
 
 			if (isEventOrder(state)) {
-				const copyState: EventOrder = { ...state, ...state.driver1 };
-				if (name in copyState) {
-					(copyState as any)[name] = value;
+				if (name === "series") {
+					state.series = value;
+					state.driver2 = {
+						...state.driver2,
+						isValid: isDualDriverSeries(value),
+					};
+				} else {
+					(state as any)[name] = value;
 				}
-				return copyState;
 			}
 		},
 		handleEventForm(state, action: PayloadAction<{ driver: string | undefined; name: string; value: string }>) {
@@ -74,3 +78,12 @@ const currentTicketSlice = createSlice({
 export const currentTicketActions = currentTicketSlice.actions;
 
 export default currentTicketSlice;
+
+// return {
+// 	...copyState,
+// 	series: value,
+// 	driver2: {
+// 		...state.driver2,
+// 		isValid: isDualDriverSeries(value) ? true : false,
+// 	},
+// };
