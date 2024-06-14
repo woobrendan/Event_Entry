@@ -116,8 +116,10 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
 
 	return (
 		<section className="driver_info input">
-			{singleDriverInfo("1")}
-			{isDualDriver && <>{singleDriverInfo("2")}</>}
+			<div className="driver_info_container">
+				{singleDriverInfo("1")}
+				{isDualDriver && <>{singleDriverInfo("2")}</>}
+			</div>
 			<BackNextButtons compNav={compNav} isValid={true} />
 		</section>
 	);
