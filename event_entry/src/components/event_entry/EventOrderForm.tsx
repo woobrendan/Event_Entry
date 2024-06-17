@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { Ticket, isEventOrder } from "../../store/types";
+import { DriverInfoInterface, Ticket, isEventOrder } from "../../store/types";
 import { currentTicketActions } from "../../store/currentTicketSlice";
 
 //** Components */
@@ -14,7 +14,7 @@ import "../../styles/orderForm.scss";
 
 const EventOrderForm: React.FC = () => {
 	const [eventComp, setEventComp] = useState(0);
-	const [bronze, setBronze] = useState({
+	const [bronzeTest, setBronzeTest] = useState({
 		driver1: null,
 		driver2: null,
 	});
@@ -36,6 +36,16 @@ const EventOrderForm: React.FC = () => {
 	const handleBoxClick = (name: string, value: string) => {
 		dispatch(currentTicketActions.setEventKeyValue({ name, value }));
 	};
+
+	const handleCheck = (e: React.ChangeEvent<HTMLInputElement>, driver: string, driverObj: DriverInfoInterface) => {
+		setBronzeTest((prev) => ({
+			...prev,
+			[`driver${driver}`]: driverObj,
+		}));
+	};
+	console.log("bronze Test", bronzeTest);
+	console.log("current", currentTicket);
+
 	let components: any = [];
 
 	if (isEventOrder(currentTicket)) {
@@ -50,7 +60,12 @@ const EventOrderForm: React.FC = () => {
 				classif={currentTicket.class}
 			/>,
 			<EntryInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={currentTicket} />,
-			<DriverInfo handleFormElement={handleFormElement} compNav={compNav} eventOrder={currentTicket} />,
+			<DriverInfo
+				handleFormElement={handleFormElement}
+				compNav={compNav}
+				eventOrder={currentTicket}
+				handleCheck={handleCheck}
+			/>,
 		];
 	}
 
