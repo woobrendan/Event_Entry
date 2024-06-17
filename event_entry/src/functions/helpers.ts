@@ -16,32 +16,4 @@ const isDualDriverSeries = (series: string): boolean => {
 	else return false;
 };
 
-const initialEventOrder = {
-	type: "",
-	event: "",
-	series: "",
-	class: "",
-	number: "",
-	team: "",
-	vehicle: "",
-	sponsors: "",
-	driver1: {
-		driverName: "",
-		driverNAT: "",
-		fiaCAT: "",
-		hometown: "",
-		email: "",
-		cell: "",
-	},
-};
-
-const singleDriverObj = {
-	driverName: "",
-	driverNAT: "",
-	fiaCAT: "",
-	hometown: "",
-	email: "",
-	cell: "",
-};
-
-export { getSeriesShort, initialEventOrder, singleDriverObj, isDualDriverSeries };
+export { getSeriesShort, isDualDriverSeries };
