@@ -1,5 +1,6 @@
+import { useState } from "react";
 import DriverSelectElement from "./DriverSelectElement";
-import { DriverObjInterface } from "../../models/props";
+import { DriverObjInterface, DriverInfoInterface } from "../../store/types";
 import drivers from "../../seeds/drivers";
 import countryCodes from "../../seeds/countryCodes";
 
@@ -8,11 +9,24 @@ interface Props {
 	driverEntry: DriverObjInterface;
 	handleSelect: (e: React.ChangeEvent<HTMLSelectElement>, driverNum: string) => void;
 	handleInput: (e: React.ChangeEvent<HTMLInputElement>, driverNum: string) => void;
+	handleCheck: (e: React.ChangeEvent<HTMLInputElement>, driver: string, driverObj: DriverInfoInterface) => void;
+}
+interface Checkbox {
+	[key: string]: boolean;
 }
 
-const SingleDriverInfo: React.FC<Props> = ({ driverNum, driverEntry, handleSelect, handleInput }) => {
+const SingleDriverInfo: React.FC<Props> = ({ driverNum, driverEntry, handleSelect, handleInput, handleCheck }) => {
 	const driver = driverEntry[`driver${driverNum}` as keyof typeof driverEntry];
 	const { driverName, driverNAT, fiaCAT, hometown, cell, email } = driver;
+	const [isChecked, setIsChecked] = useState<Checkbox>({ check1: false, check2: false });
+
+	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		handleCheck(e, driverNum, driver);
+		setIsChecked((prev) => ({
+			...prev,
+			[`check${driverNum}`]: !prev[`check${driverNum}`],
+		}));
+	};
 
 	return (
 		<div className="driver_info__driver">
@@ -69,13 +83,9 @@ const SingleDriverInfo: React.FC<Props> = ({ driverNum, driverEntry, handleSelec
 					onInput={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e, driverNum)}
 				/>
 			</div>
-			{/* <div>
-				<input
-					type="checkbox"
-					onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCheck(e, driverNum)}
-					checked={isChecked[`check${driverNum}` as keyof isChecked]}
-				/>
-			</div> */}
+			<div>
+				<input type="checkbox" onChange={onChange} checked={isChecked[`check${driverNum}`]} />
+			</div>
 		</div>
 	);
 };
