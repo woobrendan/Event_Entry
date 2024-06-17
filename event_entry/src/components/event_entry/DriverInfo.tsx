@@ -1,23 +1,22 @@
 import { SetAndNav } from "../../models/props";
-import { EventOrder, DriverObjInterface } from "../../store/types";
+import { EventOrder, DriverObjInterface, DriverInfoInterface } from "../../store/types";
 import { useState, useEffect } from "react";
 import BackNextButtons from "../BackNextButtons";
-import { getSeriesShort } from "../../functions/helpers";
+import { isBronzeEligible, isDualDriverSeries } from "../../functions/helpers";
 import SingleDriverInfo from "./SingleDriverInfo";
 
 interface Props extends SetAndNav {
 	eventOrder: EventOrder;
+	handleCheck: (e: React.ChangeEvent<HTMLInputElement>, driver: string, driverObj: DriverInfoInterface) => void;
 }
 
-const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder }) => {
-	const shortSeries = getSeriesShort(eventOrder.series);
-	const bronzeEligible = shortSeries === "gtwc" || shortSeries === "gt4a" || shortSeries === "gtam";
-
+const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder, handleCheck }) => {
+	const bronzeEligible = isBronzeEligible(eventOrder.series);
 	// Sets whether to render one or two driver components
-	const [isDualDriver, setIsDualDriver] = useState(shortSeries === "gtwc" || shortSeries === "gt4a");
+	const [isDualDriver, setIsDualDriver] = useState(isDualDriverSeries(eventOrder.series));
 
 	useEffect(() => {
-		setIsDualDriver(shortSeries === "gtwc" || shortSeries === "gt4a");
+		setIsDualDriver(isDualDriverSeries(eventOrder.series));
 	}, [eventOrder.series]);
 
 	const [driverEntry, setDriverEntry] = useState<DriverObjInterface>({
@@ -49,22 +48,15 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
 		handleFormElement(e, driverStr);
 	};
 
-	// const handleCheck = (e: React.ChangeEvent<HTMLInputElement>, driver: string) => {
-	//     setBronzeTest((prev) => ({
-	//         ...prev,
-	//         [driver]:
-	//     }))
-	// }
-
 	return (
 		<section className="driver_info input">
 			<div className="driver_info_container">
-				{/* {singleDriverInfo("1")} */}
 				<SingleDriverInfo
 					driverNum="1"
 					driverEntry={driverEntry}
 					handleSelect={handleSelect}
 					handleInput={handleInput}
+					handleCheck={handleCheck}
 				/>
 				{isDualDriver && (
 					<SingleDriverInfo
@@ -72,6 +64,7 @@ const DriverInfo: React.FC<Props> = ({ compNav, handleFormElement, eventOrder })
 						driverEntry={driverEntry}
 						handleSelect={handleSelect}
 						handleInput={handleInput}
+						handleCheck={handleCheck}
 					/>
 				)}
 			</div>
