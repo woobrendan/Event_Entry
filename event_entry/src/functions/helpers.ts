@@ -16,4 +16,10 @@ const isDualDriverSeries = (series: string): boolean => {
 	else return false;
 };
 
-export { getSeriesShort, isDualDriverSeries };
+const isBronzeEligible = (series: string): boolean => {
+	const shortSeries = getSeriesShort(series);
+	if (shortSeries === "gtwc" || shortSeries === "gt4a" || shortSeries === "gtam") return true;
+	else return false;
+};
+
+export { getSeriesShort, isDualDriverSeries, isBronzeEligible };
