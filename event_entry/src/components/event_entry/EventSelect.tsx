@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BackNextButtons from "../BackNextButtons";
 import { ClickAndNav } from "../../models/props";
+import { events } from "../../seeds/events";
 
 interface Props extends ClickAndNav {
 	event: string;
@@ -8,18 +9,6 @@ interface Props extends ClickAndNav {
 
 const EventSelect: React.FC<Props> = ({ compNav, handleBoxClick, event }) => {
 	const [selected, setSelected] = useState(event ? event : "");
-
-	const events = [
-		"Full Season Entry",
-		"Sonoma Raceway",
-		"Long Beach Grand Prix",
-		"Sebring International Raceway",
-		"Circuit of the Americas",
-		"VIRginia International Raceway",
-		"Road America",
-		"Barber Motorsports Park",
-		"Indianpolis Motor Speedway",
-	];
 
 	const handleClick = (val: string) => {
 		setSelected(val);
