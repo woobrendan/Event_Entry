@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BackNextButtons from "../BackNextButtons";
 import { ClickAndNav } from "../../models/props";
+import { seriesList } from "../../seeds/series";
 
 interface Props extends ClickAndNav {
 	series: string;
@@ -8,14 +9,6 @@ interface Props extends ClickAndNav {
 
 const SeriesSelect: React.FC<Props> = ({ compNav, handleBoxClick, series }) => {
 	const [selected, setSelected] = useState(series ? series : "");
-
-	const seriesList = [
-		"Fanatec GT World Challenge America",
-		"Pirelli GT4 America",
-		"GT America",
-		"TC America",
-		"Toyota GR Cup",
-	];
 
 	const handleClick = (val: string) => {
 		setSelected(val);
