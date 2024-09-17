@@ -10,8 +10,6 @@ import EntryInfo from "./EntryInfo";
 import ClassSelect from "./ClassSelect";
 import DriverInfo from "./DriverInfo";
 
-import "../../styles/orderForm.scss";
-
 const EventOrderForm: React.FC = () => {
 	const [eventComp, setEventComp] = useState(0);
 	const [bronzeTest, setBronzeTest] = useState({
