@@ -167,7 +167,9 @@
 	}
 }
 
-.input__series {
+.input__series,
+.input__events,
+.input__number {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -182,7 +184,7 @@
 		font-size: large;
 	}
 
-	&__number {
+	&__rental {
 		width: 20% !important;
 		height: 50px;
 		font-size: larger;
