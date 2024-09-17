@@ -43,8 +43,6 @@ const EventOrderForm: React.FC = () => {
 			[`driver${driver}`]: driverObj,
 		}));
 	};
-	console.log("bronze Test", bronzeTest);
-	console.log("current", currentTicket);
 
 	let components: any = [];
 
