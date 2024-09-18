@@ -27,11 +27,7 @@ const TicketType: React.FC = () => {
 			<div className="click_box">
 				{ticketTypes.map((ticket, index) => {
 					return (
-						<div
-							className={`ticket click_box__div`}
-							onClick={() => handleClick(ticket)}
-							key={index}
-						>
+						<div className={`ticket click_box__div`} onClick={() => handleClick(ticket)} key={index}>
 							{ticket.label}
 						</div>
 					);
