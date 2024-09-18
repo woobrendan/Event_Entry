@@ -14,10 +14,11 @@ const Lumirank: React.FC = () => {
 
 	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const series = e.target.value;
+		console.log("series");
 
 		setRental((prev) => ({
 			...prev,
-			[e.target.name]: series,
+			[e.target.name]: e.target.value,
 			cost: series === "Fanatec GT World Challenge America" ? 395 : 285,
 		}));
 	};
@@ -60,16 +61,24 @@ const Lumirank: React.FC = () => {
 			</div>
 			<h3>Check if you need to purchase power</h3>
 			<div className="rental__checkbox_container">
-				<input type="checkbox" />
-				<label>Lumirank Cable ($35)</label>
-				<input type="checkbox" />
-				<label>Telemetry/GPS ($190)</label>
-				<input type="checkbox" />
-				<label>DID Cable ($35)</label>
-				<input type="checkbox" />
-				<label>
-					Telemetry CAN Cable <br></br>[GTWC Only] ($175)
-				</label>
+				<div className="cable_checkbox">
+					<input type="checkbox" />
+					<label>Lumirank Cable ($35)</label>
+				</div>
+				<div className="cable_checkbox">
+					<input type="checkbox" />
+					<label>Telemetry/GPS ($190)</label>
+				</div>
+				<div className="cable_checkbox">
+					<input type="checkbox" />
+					<label>DID Cable ($35)</label>
+				</div>
+				<div className="cable_checkbox">
+					<input type="checkbox" />
+					<label>
+						Telemetry CAN Cable <br></br>[GTWC Only] ($175)
+					</label>
+				</div>
 			</div>
 		</section>
 	);
