@@ -13,13 +13,18 @@ const Lumirank: React.FC = () => {
 	});
 
 	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const series = e.target.value;
-		console.log("series");
+		if (e.target.name === "series") {
+			const series = e.target.value;
+			setRental((prev) => ({
+				...prev,
+				series: e.target.value,
+				cost: series === "Fanatec GT World Challenge America" ? 395 : 285,
+			}));
+		}
 
 		setRental((prev) => ({
 			...prev,
 			[e.target.name]: e.target.value,
-			cost: series === "Fanatec GT World Challenge America" ? 395 : 285,
 		}));
 	};
 
@@ -43,7 +48,7 @@ const Lumirank: React.FC = () => {
 				<SelectElements
 					label="Event"
 					className="input__events"
-					name="events"
+					name="event"
 					value={rental.event}
 					onInput={handleSelect}
 					valArr={events}
