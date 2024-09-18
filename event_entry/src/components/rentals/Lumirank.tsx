@@ -2,6 +2,7 @@ import { seriesList } from "../../seeds/series";
 import { events } from "../../seeds/events";
 import { useState } from "react";
 import SelectElements from "../event_entry/SelectElements";
+import "../../styles/rental.scss";
 
 const Lumirank: React.FC = () => {
 	const [rental, setRental] = useState({
@@ -57,9 +58,19 @@ const Lumirank: React.FC = () => {
 					/>
 				</div>
 			</div>
-			<h3>Check if you need to purchase</h3>
-			<input type="checkbox" />
-			<label>DID Cable</label>
+			<h3>Check if you need to purchase power</h3>
+			<div className="rental__checkbox_container">
+				<input type="checkbox" />
+				<label>Lumirank Cable ($35)</label>
+				<input type="checkbox" />
+				<label>Telemetry/GPS ($190)</label>
+				<input type="checkbox" />
+				<label>DID Cable ($35)</label>
+				<input type="checkbox" />
+				<label>
+					Telemetry CAN Cable <br></br>[GTWC Only] ($175)
+				</label>
+			</div>
 		</section>
 	);
 };
