@@ -1,0 +1,18 @@
+.rental_container {
+	height: 80vh;
+	width: 80vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	.team_info {
+		flex-direction: column;
+		display: flex;
+		height: 80%;
+		width: 60%;
+		justify-content: center;
+		align-items: center;
+		gap: 5%;
+	}
+}
