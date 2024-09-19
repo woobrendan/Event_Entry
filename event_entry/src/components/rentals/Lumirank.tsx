@@ -36,20 +36,17 @@ const Lumirank: React.FC = () => {
 				[name]: value,
 			};
 
-			// Check if no series is selected, if series is gtwc update price to be 395 instead of 285 for rental
-			// also check if the series isnt gtwc and changed to gtwc to update price same
-			if ((prev.series === "" && value === gtwc) || (prev.series !== gtwc && value === gtwc)) {
-				newState.cost = prev.cost + 110;
-			}
+			// Check if the series is set to gtwc, then handle logic to update price by 110
+			if (prev.series !== value) {
+				const swapToGtwc = value === gtwc;
+				const swapOffGtwc = prev.series === gtwc;
 
-			if (prev.series === "Fanatec GT World Challenge America" && value !== gtwc) {
-				newState.cost = prev.cost - 110;
+				if (swapToGtwc) {
+					newState.cost = prev.cost + 110;
+				} else if (swapOffGtwc) {
+					newState.cost = prev.cost - 110;
+				}
 			}
-
-			// if (prev.series !== gtwc)
-			// 	if (name === "series") {
-			// 		newState.cost = value === gtwc ? (prev.cost += 110) : 285;
-			// 	}
 
 			return newState;
 		});
