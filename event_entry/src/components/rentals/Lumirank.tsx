@@ -6,6 +6,7 @@ import "../../styles/rental.scss";
 import CheckBox from "./Checkbox";
 
 const Lumirank: React.FC = () => {
+	const gtwc = "Fanatec GT World Challenge America";
 	const [rental, setRental] = useState<{ [key: string]: any }>({
 		series: "",
 		event: "",
@@ -35,9 +36,20 @@ const Lumirank: React.FC = () => {
 				[name]: value,
 			};
 
-			if (name === "series") {
-				newState.cost = value === "Fanatec GT World Challenge America" ? (prev.cost += 110) : 285;
+			// Check if no series is selected, if series is gtwc update price to be 395 instead of 285 for rental
+			// also check if the series isnt gtwc and changed to gtwc to update price same
+			if ((prev.series === "" && value === gtwc) || (prev.series !== gtwc && value === gtwc)) {
+				newState.cost = prev.cost + 110;
 			}
+
+			if (prev.series === "Fanatec GT World Challenge America" && value !== gtwc) {
+				newState.cost = prev.cost - 110;
+			}
+
+			// if (prev.series !== gtwc)
+			// 	if (name === "series") {
+			// 		newState.cost = value === gtwc ? (prev.cost += 110) : 285;
+			// 	}
 
 			return newState;
 		});
@@ -108,7 +120,7 @@ const Lumirank: React.FC = () => {
 					checked={rental.gpsCable}
 				/>
 				<CheckBox label="DID Cable ($35)" name="didCable" onChange={handleInput} checked={rental.didCable} />
-				{rental.series === "Fanatec GT World Challenge America" && (
+				{rental.series === gtwc && (
 					<CheckBox
 						label="Telemetry CAN Cable"
 						name="canCable"
