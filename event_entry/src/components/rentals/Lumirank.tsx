@@ -14,7 +14,7 @@ const Lumirank: React.FC = () => {
 		didCable: false,
 		gpsCable: false,
 		canCable: false,
-		cost: 0,
+		cost: 285,
 	});
 
 	const cableCosts: { [key: string]: number } = {
@@ -98,30 +98,22 @@ const Lumirank: React.FC = () => {
 			</div>
 			<h3>Check if you need to purchase power</h3>
 			<div className="rental__checkbox_container">
-				<div className="cable_checkbox">
-					<input type="checkbox" name="lrCable" checked={rental.lrCable} onChange={handleInput} />
-					<label>Lumirank Cable ($35)</label>
-				</div>
+				<CheckBox label="Lumirank Cable ($35)" name="lrCable" onChange={handleInput} checked={rental.lrCable} />
 				<CheckBox
 					label="Telemetry/GPS ($190)"
 					name="gpsCable"
 					onChange={handleInput}
 					checked={rental.gpsCable}
 				/>
-				{/* <div className="cable_checkbox">
-					<input type="checkbox" />
-					<label>Telemetry/GPS ($190)</label>
-				</div> */}
-				<div className="cable_checkbox">
-					<input type="checkbox" />
-					<label>DID Cable ($35)</label>
-				</div>
-				<div className="cable_checkbox">
-					<input type="checkbox" />
-					<label>
-						Telemetry CAN Cable <br></br>[GTWC Only] ($175)
-					</label>
-				</div>
+				<CheckBox label="DID Cable ($35)" name="didCable" onChange={handleInput} checked={rental.didCable} />
+				{rental.series === "Fanatec GT World Challenge America" && (
+					<CheckBox
+						label="Telemetry CAN Cable [GTWC Only]"
+						name="canCable"
+						onChange={handleInput}
+						checked={rental.canCable}
+					/>
+				)}
 			</div>
 		</section>
 	);
