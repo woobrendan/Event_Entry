@@ -22,23 +22,25 @@ const Lumirank: React.FC = () => {
 		didCable: 35,
 		gpsCable: 190,
 		canCable: 170,
+		gtwcLrCable: 290,
 	};
 
 	// handle select elements to set the series value, event value and cost
 	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		if (e.target.name === "series") {
-			const series = e.target.value;
-			setRental((prev) => ({
-				...prev,
-				series: e.target.value,
-				cost: series === "Fanatec GT World Challenge America" ? 395 : 285,
-			}));
-		}
+		const { value, name } = e.target;
 
-		setRental((prev) => ({
-			...prev,
-			[e.target.name]: e.target.value,
-		}));
+		setRental((prev) => {
+			const newState = {
+				...prev,
+				[name]: value,
+			};
+
+			if (name === "series") {
+				newState.cost = value === "Fanatec GT World Challenge America" ? (prev.cost += 110) : 285;
+			}
+
+			return newState;
+		});
 	};
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,7 +110,7 @@ const Lumirank: React.FC = () => {
 				<CheckBox label="DID Cable ($35)" name="didCable" onChange={handleInput} checked={rental.didCable} />
 				{rental.series === "Fanatec GT World Challenge America" && (
 					<CheckBox
-						label="Telemetry CAN Cable [GTWC Only]"
+						label="Telemetry CAN Cable"
 						name="canCable"
 						onChange={handleInput}
 						checked={rental.canCable}
