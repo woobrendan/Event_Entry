@@ -3,6 +3,7 @@ import { events } from "../../seeds/events";
 import { useState } from "react";
 import SelectElements from "../event_entry/SelectElements";
 import "../../styles/rental.scss";
+import CheckBox from "./Checkbox";
 
 const Lumirank: React.FC = () => {
 	const [rental, setRental] = useState<{ [key: string]: any }>({
@@ -41,24 +42,28 @@ const Lumirank: React.FC = () => {
 	};
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, type } = e.target;
+		const { name, type, value } = e.target;
 
-		if (type === "checkbox") {
-			let cost = rental.cost;
-			let newBool = !rental[name];
+		setRental((prev) => {
+			// handle check box logic, set true or false, update price
+			if (type === "checkbox") {
+				let cost = prev.cost;
+				const newBool = !prev[name];
 
-			newBool ? (cost += cableCosts[name]) : (cost -= cableCosts[name]);
+				newBool ? (cost += cableCosts[name]) : (cost -= cableCosts[name]);
 
-			setRental((prev) => ({
+				return {
+					...prev,
+					[name]: newBool,
+					cost,
+				};
+			}
+
+			return {
 				...prev,
-				[name]: newBool,
-				cost,
-			}));
-		}
-		setRental((prev) => ({
-			...prev,
-			[e.target.name]: e.target.value,
-		}));
+				[name]: value,
+			};
+		});
 	};
 
 	return (
@@ -97,10 +102,16 @@ const Lumirank: React.FC = () => {
 					<input type="checkbox" name="lrCable" checked={rental.lrCable} onChange={handleInput} />
 					<label>Lumirank Cable ($35)</label>
 				</div>
-				<div className="cable_checkbox">
+				<CheckBox
+					label="Telemetry/GPS ($190)"
+					name="gpsCable"
+					onChange={handleInput}
+					checked={rental.gpsCable}
+				/>
+				{/* <div className="cable_checkbox">
 					<input type="checkbox" />
 					<label>Telemetry/GPS ($190)</label>
-				</div>
+				</div> */}
 				<div className="cable_checkbox">
 					<input type="checkbox" />
 					<label>DID Cable ($35)</label>
