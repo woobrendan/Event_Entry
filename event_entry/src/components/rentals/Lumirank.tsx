@@ -122,25 +122,39 @@ const Lumirank: React.FC = () => {
 					/>
 				</div>
 			</div>
-			<h3>Check if you need to purchase power</h3>
-			<div className="rental__checkbox_container">
-				<CheckBox label="Lumirank Cable ($35)" name="lrCable" onChange={handleInput} checked={rental.lrCable} />
-				<CheckBox
-					label={rental.series === gtwc ? "Telemetry/GPS ($290)" : "Telemetry/GPS ($190)"}
-					name="gpsCable"
-					onChange={handleInput}
-					checked={rental.gpsCable}
-				/>
-				<CheckBox label="DID Cable ($35)" name="didCable" onChange={handleInput} checked={rental.didCable} />
-				{rental.series === gtwc && (
-					<CheckBox
-						label="Telemetry CAN Cable"
-						name="canCable"
-						onChange={handleInput}
-						checked={rental.canCable}
-					/>
-				)}
-			</div>
+			{rental.series && (
+				<>
+					<h3>Check if you need to purchase power</h3>
+					<div className="rental__checkbox_container">
+						<CheckBox
+							label="Lumirank Cable ($35)"
+							name="lrCable"
+							onChange={handleInput}
+							checked={rental.lrCable}
+						/>
+						<CheckBox
+							label={rental.series === gtwc ? "Telemetry/GPS ($290)" : "Telemetry/GPS ($190)"}
+							name="gpsCable"
+							onChange={handleInput}
+							checked={rental.gpsCable}
+						/>
+						<CheckBox
+							label="DID Cable ($35)"
+							name="didCable"
+							onChange={handleInput}
+							checked={rental.didCable}
+						/>
+						{rental.series === gtwc && (
+							<CheckBox
+								label="Telemetry CAN Cable"
+								name="canCable"
+								onChange={handleInput}
+								checked={rental.canCable}
+							/>
+						)}
+					</div>
+				</>
+			)}
 		</section>
 	);
 };
