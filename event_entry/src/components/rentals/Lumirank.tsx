@@ -23,7 +23,6 @@ const Lumirank: React.FC = () => {
 		didCable: 35,
 		gpsCable: 190,
 		canCable: 170,
-		gtwcLrCable: 290,
 	};
 
 	// handle select elements to set the series value, event value and cost
@@ -52,6 +51,21 @@ const Lumirank: React.FC = () => {
 		});
 	};
 
+	const handleSeriesSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const value = e.target.value;
+		setRental((prev) => {
+			return {
+				...prev,
+				series: value,
+				lrCable: false,
+				didCable: false,
+				gpsCable: false,
+				canCable: false,
+				cost: value === gtwc ? 395 : 285,
+			};
+		});
+	};
+
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, type, value } = e.target;
 
@@ -60,8 +74,9 @@ const Lumirank: React.FC = () => {
 			if (type === "checkbox") {
 				let cost = prev.cost;
 				const newBool = !prev[name];
+				const cablePrice = name === "gpsCable" && rental.series === gtwc ? 290 : cableCosts[name];
 
-				newBool ? (cost += cableCosts[name]) : (cost -= cableCosts[name]);
+				newBool ? (cost += cablePrice) : (cost -= cablePrice);
 
 				return {
 					...prev,
@@ -85,7 +100,7 @@ const Lumirank: React.FC = () => {
 					className="input__series"
 					name="series"
 					value={rental.series}
-					onInput={handleSelect}
+					onInput={handleSeriesSelect}
 					valArr={seriesList}
 				/>
 				<SelectElements
@@ -111,7 +126,7 @@ const Lumirank: React.FC = () => {
 			<div className="rental__checkbox_container">
 				<CheckBox label="Lumirank Cable ($35)" name="lrCable" onChange={handleInput} checked={rental.lrCable} />
 				<CheckBox
-					label="Telemetry/GPS ($190)"
+					label={rental.series === gtwc ? "Telemetry/GPS ($290)" : "Telemetry/GPS ($190)"}
 					name="gpsCable"
 					onChange={handleInput}
 					checked={rental.gpsCable}
