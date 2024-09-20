@@ -24,6 +24,13 @@ const TicketType: React.FC = () => {
 
 	return (
 		<section className="ticket_type_container click_component">
+			<div className="new_order_container">
+				<h1>2025 SRO Motorsports America Season</h1>
+				<h3>
+					Welcome to the event entry website for SROMA. To begin order, please select the type of ticket you
+					would like to purchase
+				</h3>
+			</div>
 			<div className="click_box">
 				{ticketTypes.map((ticket, index) => {
 					return (
