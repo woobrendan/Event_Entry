@@ -8,7 +8,6 @@ import { useState } from "react";
 
 import "./styles/orderForm.scss";
 import "./styles/ticketType.scss";
-import { render } from "@testing-library/react";
 
 const AppAlt: React.FC = () => {
 	const [type, setType] = useState("");
@@ -21,6 +20,9 @@ const AppAlt: React.FC = () => {
 		switch (type) {
 			case "eventOrder":
 				return <EventOrderForm />;
+			case "rental":
+				return <Lumirank />;
+
 			default:
 				return <TicketTypeAlt getType={getType} />;
 		}
