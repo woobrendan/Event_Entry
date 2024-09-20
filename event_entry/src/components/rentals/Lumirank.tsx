@@ -1,14 +1,26 @@
+import { useState } from "react";
+
+//** Seeds */
 import { seriesList } from "../../seeds/series";
 import { events } from "../../seeds/events";
-import { useState } from "react";
+
+//** Components */
 import SelectElements from "../event_entry/SelectElements";
-import "../../styles/rental.scss";
 import CheckBox from "./Checkbox";
+import { Button } from "@mui/material";
+
+import "../../styles/rental.scss";
+import { RentalTicket } from "../../models/ticketInterfaces";
+import { useDispatch } from "react-redux";
+import { ticketListActions } from "../../store/ticketListSlice";
 
 const Lumirank: React.FC = () => {
 	const gtwc = "Fanatec GT World Challenge America";
 	const gtam = "GT America";
-	const [rental, setRental] = useState<{ [key: string]: any }>({
+	const dispatch = useDispatch();
+
+	const [rental, setRental] = useState<RentalTicket>({
+		ticketType: "Rental",
 		series: "",
 		event: "",
 		number: 0,
@@ -19,8 +31,14 @@ const Lumirank: React.FC = () => {
 		cost: 0,
 	});
 
+	// const addToOrder = (state: RentalTicket) => {
+	// 	dispatch(ticketListActions.addTicket(state));
+	//     //update other end to accept rental ticket state
+	//     // navigate to cart
+	// };
+
 	// pass in old state that is prev with the new updated key (the state before returning)
-	const getNewTotalCost = (oldState: { [key: string]: any }) => {
+	const getNewTotalCost = (oldState: RentalTicket) => {
 		const { event, series, lrCable, gpsCable, didCable, canCable } = oldState;
 
 		if (event && series) {
@@ -150,6 +168,11 @@ const Lumirank: React.FC = () => {
 						)}
 					</div>
 				</>
+			)}
+			{rental.series && rental.event && rental.number && (
+				<Button variant="contained" color="error">
+					Add to Order
+				</Button>
 			)}
 		</section>
 	);
