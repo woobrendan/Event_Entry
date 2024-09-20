@@ -7,6 +7,7 @@ import CheckBox from "./Checkbox";
 
 const Lumirank: React.FC = () => {
 	const gtwc = "Fanatec GT World Challenge America";
+	const gtam = "GT America";
 	const [rental, setRental] = useState<{ [key: string]: any }>({
 		series: "",
 		event: "",
@@ -15,19 +16,33 @@ const Lumirank: React.FC = () => {
 		didCable: false,
 		gpsCable: false,
 		canCable: false,
-		cost: 285,
+		cost: 0,
 	});
 
-	const cableCosts: { [key: string]: number } = {
-		lrCable: 35,
-		didCable: 35,
-		gpsCable: 190,
-		canCable: 170,
+	// pass in old state that is prev with the new updated key (the state before returning)
+	const getNewTotalCost = (oldState: { [key: string]: any }) => {
+		const { event, series, lrCable, gpsCable, didCable, canCable } = oldState;
+
+		if (event && series) {
+			// Calculate the base rental cost based on the event and series
+			const numOfEvents = series === gtam ? 8 : 7;
+			const baseCost = series === gtwc ? 395 : 285;
+			let totalCost = event === "Full Season Entry" ? baseCost * numOfEvents : baseCost;
+
+			// Add costs for selected cables
+			if (lrCable) totalCost += 35;
+			if (gpsCable) totalCost += series === gtwc ? 290 : 190;
+			if (didCable) totalCost += 35;
+			if (canCable && series === gtwc) totalCost += 170; // Only add CAN cable if series is GTWC
+
+			return totalCost;
+		} else {
+			return 0;
+		}
 	};
 
-	// handle select elements to set the series value, event value and cost
 	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const { value, name } = e.target;
+		const { name, value } = e.target;
 
 		setRental((prev) => {
 			const newState = {
@@ -35,33 +50,9 @@ const Lumirank: React.FC = () => {
 				[name]: value,
 			};
 
-			// Check if the series is set to gtwc, then handle logic to update price by 110
-			if (prev.series !== value) {
-				const swapToGtwc = value === gtwc;
-				const swapOffGtwc = prev.series === gtwc;
-
-				if (swapToGtwc) {
-					newState.cost = prev.cost + 110;
-				} else if (swapOffGtwc) {
-					newState.cost = prev.cost - 110;
-				}
-			}
-
-			return newState;
-		});
-	};
-
-	const handleSeriesSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const value = e.target.value;
-		setRental((prev) => {
 			return {
-				...prev,
-				series: value,
-				lrCable: false,
-				didCable: false,
-				gpsCable: false,
-				canCable: false,
-				cost: value === gtwc ? 395 : 285,
+				...newState,
+				cost: getNewTotalCost(newState),
 			};
 		});
 	};
@@ -72,16 +63,15 @@ const Lumirank: React.FC = () => {
 		setRental((prev) => {
 			// handle check box logic, set true or false, update price
 			if (type === "checkbox") {
-				let cost = prev.cost;
 				const newBool = !prev[name];
-				const cablePrice = name === "gpsCable" && rental.series === gtwc ? 290 : cableCosts[name];
-
-				newBool ? (cost += cablePrice) : (cost -= cablePrice);
-
-				return {
+				const newState = {
 					...prev,
 					[name]: newBool,
-					cost,
+				};
+
+				return {
+					...newState,
+					cost: getNewTotalCost(newState),
 				};
 			}
 
@@ -94,15 +84,9 @@ const Lumirank: React.FC = () => {
 
 	return (
 		<section className="rental_container">
+			<h1>Lumirank Rental</h1>
+			<h3>Lumirank Rental Cost: ${rental.cost}</h3>
 			<div className="team_info">
-				<SelectElements
-					label="Series"
-					className="input__series"
-					name="series"
-					value={rental.series}
-					onInput={handleSeriesSelect}
-					valArr={seriesList}
-				/>
 				<SelectElements
 					label="Event"
 					className="input__events"
@@ -111,18 +95,30 @@ const Lumirank: React.FC = () => {
 					onInput={handleSelect}
 					valArr={events}
 				/>
-				<div className="input__number">
-					<label>Car Number:</label>
-					<input
-						className="input__number__rental"
-						type="number"
-						value={rental.number}
-						name="number"
-						onInput={handleInput}
-					/>
-				</div>
+				{rental.event && (
+					<>
+						<SelectElements
+							label="Series"
+							className="input__series"
+							name="series"
+							value={rental.series}
+							onInput={handleSelect}
+							valArr={seriesList}
+						/>
+						<div className="input__number">
+							<label>Car Number:</label>
+							<input
+								className="input__number__rental"
+								type="number"
+								value={rental.number}
+								name="number"
+								onInput={handleInput}
+							/>
+						</div>
+					</>
+				)}
 			</div>
-			{rental.series && (
+			{rental.series && rental.event && (
 				<>
 					<h3>Check if you need to purchase power</h3>
 					<div className="rental__checkbox_container">
