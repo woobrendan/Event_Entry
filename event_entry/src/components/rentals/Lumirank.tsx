@@ -10,14 +10,14 @@ import CheckBox from "./Checkbox";
 import { Button } from "@mui/material";
 
 import "../../styles/rental.scss";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../store/hooks";
 import { ticketListActions } from "../../store/ticketListSlice";
 import { LumirankRental } from "../../store/types";
 
 const Lumirank: React.FC = () => {
 	const gtwc = "Fanatec GT World Challenge America";
 	const gtam = "GT America";
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const [rental, setRental] = useState<LumirankRental>({
 		ticketType: "Rental",
@@ -170,7 +170,7 @@ const Lumirank: React.FC = () => {
 				</>
 			)}
 			{rental.series && rental.event && rental.number && (
-				<Button variant="contained" color="error">
+				<Button variant="contained" color="error" onClick={() => addToOrder(rental)}>
 					Add to Order
 				</Button>
 			)}
