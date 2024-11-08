@@ -10,35 +10,35 @@ import CheckBox from "./Checkbox";
 import { Button } from "@mui/material";
 
 import "../../styles/rental.scss";
-import { RentalTicket } from "../../models/ticketInterfaces";
 import { useDispatch } from "react-redux";
 import { ticketListActions } from "../../store/ticketListSlice";
+import { LumirankRental } from "../../store/types";
 
 const Lumirank: React.FC = () => {
 	const gtwc = "Fanatec GT World Challenge America";
 	const gtam = "GT America";
 	const dispatch = useDispatch();
 
-	const [rental, setRental] = useState<RentalTicket>({
+	const [rental, setRental] = useState<LumirankRental>({
 		ticketType: "Rental",
 		series: "",
 		event: "",
-		number: 0,
+		number: "",
 		lrCable: false,
 		didCable: false,
 		gpsCable: false,
 		canCable: false,
-		cost: 0,
+		cost: "0",
 	});
 
-	// const addToOrder = (state: RentalTicket) => {
-	// 	dispatch(ticketListActions.addTicket(state));
-	//     //update other end to accept rental ticket state
-	//     // navigate to cart
-	// };
+	const addToOrder = (state: LumirankRental) => {
+		dispatch(ticketListActions.addTicket(state));
+		//update other end to accept rental ticket state
+		// navigate to cart
+	};
 
 	// pass in old state that is prev with the new updated key (the state before returning)
-	const getNewTotalCost = (oldState: RentalTicket) => {
+	const getNewTotalCost = (oldState: LumirankRental) => {
 		const { event, series, lrCable, gpsCable, didCable, canCable } = oldState;
 
 		if (event && series) {
@@ -53,9 +53,9 @@ const Lumirank: React.FC = () => {
 			if (didCable) totalCost += 35;
 			if (canCable && series === gtwc) totalCost += 170; // Only add CAN cable if series is GTWC
 
-			return totalCost;
+			return totalCost.toString();
 		} else {
-			return 0;
+			return "0";
 		}
 	};
 
@@ -81,7 +81,7 @@ const Lumirank: React.FC = () => {
 		setRental((prev) => {
 			// handle check box logic, set true or false, update price
 			if (type === "checkbox") {
-				const newBool = !prev[name];
+				const newBool = !prev[name as keyof LumirankRental];
 				const newState = {
 					...prev,
 					[name]: newBool,
