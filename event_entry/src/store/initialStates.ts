@@ -1,7 +1,7 @@
 import { EventOrder, BronzeTest } from "./types";
 
 export const initialEventOrder: Partial<EventOrder> = {
-	type: "EventOrder",
+	ticketType: "EventOrder",
 	event: "",
 	series: "",
 	class: "",
@@ -30,7 +30,7 @@ export const initialEventOrder: Partial<EventOrder> = {
 };
 
 export const initialBronzeTest: Partial<BronzeTest> = {
-	type: "BronzeTest",
+	ticketType: "BronzeTest",
 	isSelected: false,
 	driver1: {
 		driverName: "",
