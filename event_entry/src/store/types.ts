@@ -1,8 +1,8 @@
 // import { EventOrder, BronzeTest } from "../models/props";
 
 export interface BaseTicket {
-	ticketNum: string;
-	type: string;
+	// ticketNum: string;
+	ticketType: string;
 }
 
 export interface DriverInfoInterface {
@@ -16,7 +16,6 @@ export interface DriverInfoInterface {
 }
 
 export interface EventOrder extends BaseTicket {
-	type: string;
 	event: string;
 	series: string;
 	class: string;
@@ -29,18 +28,28 @@ export interface EventOrder extends BaseTicket {
 }
 
 export interface BronzeTest extends BaseTicket {
-	type: string;
 	isSelected?: boolean;
 	driver1?: DriverInfoInterface;
 	driver2?: DriverInfoInterface;
+}
+
+export interface LumirankRental extends BaseTicket {
+	series: string;
+	event: string;
+	number: string;
+	lrCable: boolean;
+	canCable: boolean;
+	didCable: boolean;
+	gpsCable: boolean;
+	cost: string;
 }
 
 export interface DriverObjInterface {
 	[key: string]: DriverInfoInterface;
 }
 
-export type Ticket = BaseTicket & (Partial<EventOrder> | Partial<BronzeTest>);
+export type Ticket = BaseTicket & (Partial<EventOrder> | Partial<BronzeTest> | Partial<LumirankRental>);
 
 export const isEventOrder = (ticket: Ticket): ticket is EventOrder => {
-	return (ticket as EventOrder).type === "EventOrder";
+	return (ticket as EventOrder).ticketType === "EventOrder";
 };
