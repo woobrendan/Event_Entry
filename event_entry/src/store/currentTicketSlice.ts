@@ -11,7 +11,12 @@ interface ClickValues {
 const initialState: Ticket = {
 	// ticketNum: "1",
 	ticketType: "",
+	event: "",
+	series: "",
+	number: "",
+	team: "",
 };
+
 const currentTicketSlice = createSlice({
 	name: "currentTicket",
 	initialState,
