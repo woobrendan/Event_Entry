@@ -3,6 +3,10 @@
 export interface BaseTicket {
 	// ticketNum: string;
 	ticketType: string;
+	event: string;
+	series: string;
+	number: string;
+	team: string;
 }
 
 export interface DriverInfoInterface {
@@ -16,11 +20,7 @@ export interface DriverInfoInterface {
 }
 
 export interface EventOrder extends BaseTicket {
-	event: string;
-	series: string;
 	class: string;
-	number: string;
-	team: string;
 	sponsors: string;
 	vehicle: string;
 	driver1: DriverInfoInterface;
@@ -34,9 +34,6 @@ export interface BronzeTest extends BaseTicket {
 }
 
 export interface LumirankRental extends BaseTicket {
-	series: string;
-	event: string;
-	number: string;
 	lrCable: boolean;
 	canCable: boolean;
 	didCable: boolean;
