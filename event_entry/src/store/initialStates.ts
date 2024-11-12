@@ -31,6 +31,10 @@ export const initialEventOrder: Partial<EventOrder> = {
 
 export const initialBronzeTest: Partial<BronzeTest> = {
 	ticketType: "BronzeTest",
+	event: "",
+	series: "",
+	number: "",
+	team: "",
 	isSelected: false,
 	driver1: {
 		driverName: "",
