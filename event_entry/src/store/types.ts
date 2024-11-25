@@ -7,6 +7,7 @@ export interface BaseTicket {
 	series: string;
 	number: string;
 	team: string;
+	cost: string;
 }
 
 export interface DriverInfoInterface {
@@ -38,7 +39,6 @@ export interface LumirankRental extends BaseTicket {
 	canCable: boolean;
 	didCable: boolean;
 	gpsCable: boolean;
-	cost: string;
 }
 
 export interface DriverObjInterface {
