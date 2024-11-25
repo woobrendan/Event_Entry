@@ -1,28 +1,30 @@
 import { useAppSelector } from "../../store/hooks";
 import TicketListItem from "./TicketListItem";
+import "../../styles/cart.scss";
+import { Table, TableCell, TableContainer, TableHead, TableRow, Paper, TableBody } from "@mui/material";
 
 const CartDashboard: React.FC = () => {
 	const tickets = useAppSelector((state) => state.ticketList.ticketList);
 	return (
-		<section className="dashboard">
-			<table>
-				<thead>
-					<tr>
-						<th>Ticket Type</th>
-						<th>Event</th>
-						<th>Quantity</th>
-						<th>Cost</th>
-						<th>Delete</th>
-					</tr>
-				</thead>
-				<tbody>
+		<TableContainer component={Paper} className="dashboard">
+			<Table>
+				<TableHead>
+					<TableRow>
+						<TableCell>Ticket Type</TableCell>
+						<TableCell>Event</TableCell>
+						<TableCell align="right">Quantity</TableCell>
+						<TableCell align="right">Cost</TableCell>
+						<TableCell align="right">Delete</TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
 					{tickets.map((ticket, index) => (
 						<TicketListItem ticketItem={ticket} key={index} />
 						// add on delete
 					))}
-				</tbody>
-			</table>
-		</section>
+				</TableBody>
+			</Table>
+		</TableContainer>
 	);
 };
 

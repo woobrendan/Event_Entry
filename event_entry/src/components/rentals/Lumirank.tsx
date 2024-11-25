@@ -11,16 +11,20 @@ import { Button } from "@mui/material";
 
 import "../../styles/rental.scss";
 import { useAppDispatch } from "../../store/hooks";
+import { useNavigate } from "react-router-dom";
 import { ticketListActions } from "../../store/ticketListSlice";
 import { LumirankRental } from "../../store/types";
 
 const Lumirank: React.FC = () => {
 	const gtwc = "Fanatec GT World Challenge America";
 	const gtam = "GT America";
+
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
 	const [rental, setRental] = useState<LumirankRental>({
 		ticketType: "Rental",
+		team: "",
 		series: "",
 		event: "",
 		number: "",
@@ -33,8 +37,7 @@ const Lumirank: React.FC = () => {
 
 	const addToOrder = (state: LumirankRental) => {
 		dispatch(ticketListActions.addTicket(state));
-		//update other end to accept rental ticket state
-		// navigate to cart
+		navigate("/cart");
 	};
 
 	// pass in old state that is prev with the new updated key (the state before returning)
