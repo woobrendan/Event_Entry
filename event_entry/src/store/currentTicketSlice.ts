@@ -15,6 +15,7 @@ const initialState: Ticket = {
 	series: "",
 	number: "",
 	team: "",
+	cost: "0",
 };
 
 const currentTicketSlice = createSlice({
