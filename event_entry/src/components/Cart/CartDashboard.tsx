@@ -12,14 +12,14 @@ const CartDashboard: React.FC = () => {
 					<TableRow>
 						<TableCell>Ticket Type</TableCell>
 						<TableCell>Event</TableCell>
-						<TableCell align="right">Quantity</TableCell>
 						<TableCell align="right">Cost</TableCell>
+						<TableCell align="right">Details</TableCell>
 						<TableCell align="right">Delete</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					{tickets.map((ticket, index) => (
-						<TicketListItem ticketItem={ticket} key={index} />
+						<TicketListItem ticketItem={ticket} key={index} ticketIndex={index} />
 						// add on delete
 					))}
 				</TableBody>
@@ -29,3 +29,6 @@ const CartDashboard: React.FC = () => {
 };
 
 export default CartDashboard;
+
+// have modal for details
+// pass function down to each row, when invoked, pass the ticket details to modal to display information
