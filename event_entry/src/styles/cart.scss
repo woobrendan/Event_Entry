@@ -1,7 +1,14 @@
 .dashboard.MuiTableContainer-root {
-	width: 80%;
+	width: 90%;
 
 	table {
-		width: 100% !important;
+		width: 100%;
+	}
+}
+
+.deleteTicket {
+	span {
+		margin-left: 0;
+		margin-right: 0;
 	}
 }
