@@ -28,10 +28,9 @@ export interface EventOrder extends BaseTicket {
 	driver2: DriverInfoInterface;
 }
 
-export interface BronzeTest extends BaseTicket {
-	isSelected?: boolean;
-	driver1?: DriverInfoInterface;
-	driver2?: DriverInfoInterface;
+export interface BronzeTestTicket extends BaseTicket {
+	driver1: string;
+	driver2?: string;
 }
 
 export interface LumirankRental extends BaseTicket {
@@ -45,7 +44,7 @@ export interface DriverObjInterface {
 	[key: string]: DriverInfoInterface;
 }
 
-export type Ticket = BaseTicket & (Partial<EventOrder> | Partial<BronzeTest> | Partial<LumirankRental>);
+export type Ticket = BaseTicket & (Partial<EventOrder> | Partial<BronzeTestTicket> | Partial<LumirankRental>);
 
 export const isEventOrder = (ticket: Ticket): ticket is EventOrder => {
 	return (ticket as EventOrder).ticketType === "EventOrder";
