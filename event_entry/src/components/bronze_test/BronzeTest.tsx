@@ -22,7 +22,11 @@ const BronzeTest: React.FC = () => {
 		// handleFormElement(e); --> set current ticket values, tbd if using
 	};
 
-	seriesList.push("McLaren Trophy");
+	const sroSeriesList = seriesList;
+
+	if (!sroSeriesList.includes("McLaren Trophy")) {
+		sroSeriesList.push("McLaren Trophy");
+	}
 
 	return (
 		<section className="event_container click_component">
@@ -32,7 +36,7 @@ const BronzeTest: React.FC = () => {
 				name="series"
 				value={bronzeTix.team}
 				onInput={handleSelect}
-				valArr={seriesList}
+				valArr={sroSeriesList}
 			/>
 		</section>
 	);
