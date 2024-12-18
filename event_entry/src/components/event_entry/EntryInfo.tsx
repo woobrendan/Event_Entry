@@ -5,7 +5,7 @@ import { teams } from "../../seeds/teams";
 import BackNextButtons from "../BackNextButtons";
 import vehicles from "../../seeds/vehicles";
 import { getSeriesShort } from "../../functions/helpers";
-import SelectElements from "./SelectElements";
+import SelectElements from "../SelectElements";
 
 interface Props extends SetAndNav {
 	eventOrder: EventOrder;
