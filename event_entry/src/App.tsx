@@ -4,6 +4,7 @@ import EventOrderForm from "./components/event_entry/EventOrderForm";
 import Lumirank from "./components/rentals/Lumirank";
 import TicketType from "./components/TicketType";
 import CartDashboard from "./components/Cart/CartDashboard";
+import BronzeTest from "./components/bronze_test/BronzeTest";
 
 import "./styles/orderForm.scss";
 import "./styles/ticketType.scss";
@@ -17,6 +18,7 @@ const App: React.FC = () => {
 					<Route path="/eventOrder" element={<EventOrderForm />} />
 					<Route path="/rentals" element={<Lumirank />} />
 					<Route path="/cart" element={<CartDashboard />} />
+					<Route path="/bronzeTest" element={<BronzeTest />} />
 				</Routes>
 			</div>
 		</Router>
