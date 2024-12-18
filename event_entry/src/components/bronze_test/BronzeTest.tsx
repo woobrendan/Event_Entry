@@ -1,30 +1,39 @@
-import { SetAndNav } from "../../models/props";
-import { EventOrder } from "../../store/types";
+import { useState } from "react";
+import SelectElements from "../SelectElements";
+import { BronzeTestTicket } from "../../store/types";
+import { seriesList } from "../../seeds/series";
 
-interface Props extends SetAndNav {
-	eventOrder: EventOrder;
-}
+const BronzeTest: React.FC = () => {
+	const [bronzeTix, setBronzeTix] = useState<BronzeTestTicket>({
+		ticketType: "Bronze",
+		event: "",
+		series: "",
+		number: "",
+		team: "",
+		cost: "",
+		driver1: "",
+	});
 
-const BronzeTest: React.FC<Props> = ({ eventOrder }) => {
-	const { driver1, series } = eventOrder;
+	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		setBronzeTix((prev) => ({
+			...prev,
+			[e.target.name]: e.target.value,
+		}));
+		// handleFormElement(e); --> set current ticket values, tbd if using
+	};
+
+	seriesList.push("McLaren Trophy");
 
 	return (
 		<section className="event_container click_component">
-			{/* <div className="click_box click_box__event">
-				<h1>Bronze Test Session</h1>
-				{events.map((event, index) => {
-					return (
-						<div
-							className={`event click_box__div ${selected === event ? "selected" : ""}`}
-							onClick={() => handleClick(event)}
-							key={index}
-						>
-							{event}
-						</div>
-					);
-				})}
-			</div>
-			<BackNextButtons compNav={compNav} isValid={selected ? true : false} /> */}
+			<SelectElements
+				label="Series"
+				className="input___series"
+				name="series"
+				value={bronzeTix.team}
+				onInput={handleSelect}
+				valArr={seriesList}
+			/>
 		</section>
 	);
 };
