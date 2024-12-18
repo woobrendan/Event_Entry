@@ -1,4 +1,4 @@
-import { EventOrder, BronzeTest } from "./types";
+import { EventOrder, BronzeTestTicket } from "./types";
 
 export const initialEventOrder: Partial<EventOrder> = {
 	ticketType: "EventOrder",
@@ -29,13 +29,12 @@ export const initialEventOrder: Partial<EventOrder> = {
 	},
 };
 
-export const initialBronzeTest: Partial<BronzeTest> = {
+export const initialBronzeTest: Partial<BronzeTestTicket> = {
 	ticketType: "BronzeTest",
 	event: "",
 	series: "",
 	number: "",
 	team: "",
-	isSelected: false,
 	driver1: {
 		driverName: "",
 		driverNAT: "",
