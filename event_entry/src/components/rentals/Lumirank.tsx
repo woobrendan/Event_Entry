@@ -5,7 +5,7 @@ import { seriesList } from "../../seeds/series";
 import { events } from "../../seeds/events";
 
 //** Components */
-import SelectElements from "../event_entry/SelectElements";
+import SelectElements from "../SelectElements";
 import CheckBox from "./Checkbox";
 import { Button } from "@mui/material";
 
