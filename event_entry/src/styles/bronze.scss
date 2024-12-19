@@ -7,7 +7,8 @@
 	align-items: center;
 	gap: 5%;
 
-	.select_detail {
+	.select_detail,
+	.input__team {
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -21,6 +22,12 @@
 			width: 60%;
 			height: 50px;
 			font-size: large;
+		}
+
+		&__number {
+			width: 20% !important;
+			height: 50px;
+			font-size: larger;
 		}
 	}
 }
