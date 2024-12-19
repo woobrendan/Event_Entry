@@ -1,5 +1,7 @@
 import { useState } from "react";
+// Components //
 import SelectElements from "../SelectElements";
+import DriverSelectElements from "../event_entry/DriverSelectElement";
 import { BronzeTestTicket } from "../../store/types";
 import "../../styles/bronze.scss";
 
@@ -7,6 +9,7 @@ import "../../styles/bronze.scss";
 import { seriesList } from "../../seeds/series";
 import { events } from "../../seeds/events";
 import { teams } from "../../seeds/teams";
+import drivers from "../../seeds/drivers";
 
 const BronzeTest: React.FC = () => {
 	const [bronzeTix, setBronzeTix] = useState<BronzeTestTicket>({
@@ -15,8 +18,9 @@ const BronzeTest: React.FC = () => {
 		series: "",
 		number: "",
 		team: "",
-		cost: "",
+		cost: "250",
 		driver1: "",
+		driver2: "",
 	});
 
 	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -79,6 +83,16 @@ const BronzeTest: React.FC = () => {
 				onInput={handleSelect}
 				valArr={teams}
 			/>
+			<DriverSelectElements
+				label={`Driver 1`}
+				className="input__driver"
+				name="driver1"
+				value={bronzeTix.driver1}
+				onInput={handleSelect}
+				valArr={drivers}
+				driverNum={"1"}
+			/>
+			{/* add in checkbox to toggle driver 2 info and cost (+250) */}
 		</section>
 	);
 };
