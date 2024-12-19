@@ -1,0 +1,26 @@
+.bronze_container {
+	flex-direction: column;
+	display: flex;
+	height: 80%;
+	width: 80%;
+	justify-content: center;
+	align-items: center;
+	gap: 5%;
+
+	.select_detail {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		font-size: larger;
+		font-weight: bold;
+		justify-content: center;
+		gap: 5%;
+
+		select,
+		input {
+			width: 60%;
+			height: 50px;
+			font-size: large;
+		}
+	}
+}
