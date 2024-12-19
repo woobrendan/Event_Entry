@@ -2,6 +2,7 @@ import { useState } from "react";
 import SelectElements from "../SelectElements";
 import { BronzeTestTicket } from "../../store/types";
 import { seriesList } from "../../seeds/series";
+import "../../styles/bronze.scss";
 
 const BronzeTest: React.FC = () => {
 	const [bronzeTix, setBronzeTix] = useState<BronzeTestTicket>({
@@ -29,10 +30,10 @@ const BronzeTest: React.FC = () => {
 	}
 
 	return (
-		<section className="event_container click_component">
+		<section className="bronze_container">
 			<SelectElements
 				label="Series"
-				className="input___series"
+				className="select_detail input___series"
 				name="series"
 				value={bronzeTix.team}
 				onInput={handleSelect}
