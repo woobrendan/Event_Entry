@@ -41,7 +41,7 @@ const BronzeTest: React.FC = () => {
 		sroSeriesList.push("McLaren Trophy");
 	}
 
-	const bronzeEvents = events.filter((event) => event !== "Long Beach Grand Prix");
+	const bronzeEvents = events.filter((event) => event !== "Long Beach Grand Prix" && event !== "Full Season Entry");
 
 	return (
 		<section className="bronze_container">
@@ -56,7 +56,7 @@ const BronzeTest: React.FC = () => {
 			<SelectElements
 				label="Event"
 				className="select_detail"
-				name="series"
+				name="event"
 				value={bronzeTix.event}
 				onInput={handleSelect}
 				valArr={bronzeEvents}
@@ -73,7 +73,7 @@ const BronzeTest: React.FC = () => {
 			</div>
 			<SelectElements
 				label="Team"
-				className="input__team"
+				className="select_detail"
 				name="team"
 				value={bronzeTix.team}
 				onInput={handleSelect}
