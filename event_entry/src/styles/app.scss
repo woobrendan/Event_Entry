@@ -1,14 +1,49 @@
-
 .App {
-    margin: 0; 
-    padding: 0; 
-    background-image: url('../images/GT.png'); 
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    height: 100vh; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white
+	margin: 0;
+	padding: 0;
+	background-image: url("../images/GT.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+}
+
+#nav-bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000%;
+	background-color: #ee2e24;
+	color: white;
+	box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+	.nav-bar_container {
+		display: flex;
+		align-items: center;
+		padding: 0 16px;
+		height: 64px; /* typical app bar height */
+
+		.nav-bar_links {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			gap: 24px; /* spacing between title and links */
+			width: 100%;
+			a {
+				color: white;
+				text-decoration: none;
+				font-weight: 500;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+		}
+	}
 }
