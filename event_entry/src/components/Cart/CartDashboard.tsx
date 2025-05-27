@@ -1,10 +1,17 @@
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import TicketListItem from "./TicketListItem";
+import { ticketListActions } from "../../store/ticketListSlice";
 import "../../styles/cart.scss";
 import { Table, TableCell, TableContainer, TableHead, TableRow, Paper, TableBody } from "@mui/material";
 
 const CartDashboard: React.FC = () => {
+	const dispatch = useAppDispatch();
 	const tickets = useAppSelector((state) => state.ticketList.ticketList);
+
+	const onDelete = (keyNum: number) => {
+		dispatch(ticketListActions.removeTicket(keyNum));
+	};
+
 	return (
 		<TableContainer component={Paper} className="dashboard">
 			<Table>
@@ -19,7 +26,7 @@ const CartDashboard: React.FC = () => {
 				</TableHead>
 				<TableBody>
 					{tickets.map((ticket, index) => (
-						<TicketListItem ticketItem={ticket} key={index} ticketIndex={index} />
+						<TicketListItem ticketItem={ticket} key={index} ticketIndex={index} onDelete={onDelete} />
 						// add on delete
 					))}
 				</TableBody>
