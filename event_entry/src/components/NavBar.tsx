@@ -4,12 +4,12 @@ const NavBar: React.FC = () => {
 	return (
 		<header id="nav-bar">
 			<div className="nav-bar_container">
-				<div className="nav-bar_links">
-					<nav>
-						<Link to="/cart">Cart</Link>
-						<Link to="/eventOrder">Event Entry</Link>
-					</nav>
-				</div>
+				<nav className="nav-bar_links">
+					<Link to="/eventOrder">Event Entry</Link>
+					<Link to="/rentals">Lumirank Rentals</Link>
+					<Link to="/BronzeTest">Bronze Test</Link>
+					<Link to="/cart">Cart</Link>
+				</nav>
 			</div>
 		</header>
 	);
