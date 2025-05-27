@@ -5,10 +5,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 interface Props {
 	ticketItem: Ticket;
 	ticketIndex: number;
+	onDelete: (val: number) => void;
 }
 
-const TicketListItem: React.FC<Props> = ({ ticketItem, ticketIndex }) => {
-	console.log("ticket", ticketItem);
+const TicketListItem: React.FC<Props> = ({ ticketItem, ticketIndex, onDelete }) => {
 	let { event, ticketType, cost } = ticketItem;
 	// const ticketType = ticketItem.ticketType === "Rental" ? "Lumirank Rental" : ""
 	// cost, quantity, onDelete
@@ -22,10 +22,16 @@ const TicketListItem: React.FC<Props> = ({ ticketItem, ticketIndex }) => {
 		<TableRow>
 			<TableCell>{ticketType}</TableCell>
 			<TableCell>{event}</TableCell>
-			<TableCell align="right">{cost}</TableCell>
+			<TableCell align="right">${cost}</TableCell>
 			<TableCell align="right">Details TBD</TableCell>
 			<TableCell align="right">
-				<Button className="deleteTicket" variant="contained" color="error" startIcon={<DeleteIcon />} />
+				<Button
+					className="deleteTicket"
+					variant="contained"
+					color="error"
+					startIcon={<DeleteIcon />}
+					onClick={() => onDelete(ticketIndex)}
+				/>
 			</TableCell>
 		</TableRow>
 	);
